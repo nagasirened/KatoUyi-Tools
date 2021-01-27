@@ -1,0 +1,6 @@
+
+# fastDFS
+fdfs:
+  connect-timeout: 300  # 连接超时时间
+  so-timeout: 300       # 读取超时时间
+  tracker-list: 101.132.123.185:22122
