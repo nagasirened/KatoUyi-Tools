@@ -1,4 +1,4 @@
-package com.nagasirened.common.redis.prefix;
+package com.katouyi.tools.redis.prefix;
 
 /**
  * @description: 公共的抽象类

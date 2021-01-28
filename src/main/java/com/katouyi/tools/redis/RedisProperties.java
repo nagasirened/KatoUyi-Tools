@@ -1,4 +1,4 @@
-package com.nagasirened.common.redis;
+package com.katouyi.tools.redis;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

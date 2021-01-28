@@ -1,4 +1,4 @@
-package com.nagasirened.common.redis;
+package com.katouyi.tools.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.nagasirened.common.redis.prefix;
+package com.katouyi.tools.redis.prefix;
 
 /**
  * <p>
