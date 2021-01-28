@@ -1,20 +1,19 @@
 package com.katouyi.tools.redis;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 import com.katouyi.tools.redis.prefix.Prefix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.time.Duration;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -22,7 +21,6 @@ import java.util.concurrent.TimeUnit;
  * @description: redis操作工具
  * </p>
  * @author: ZengGuangfu
- * @since 2019-09-2019/9/20
  */
 
 @Slf4j
@@ -30,46 +28,27 @@ import java.util.concurrent.TimeUnit;
 public class RedisAuxiliary {
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-    @Autowired
     private ValueOperations<String, Object> valueOperations;
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Resource(name = "longRedisTemplate")
-    private RedisTemplate<String, Long> longRedisTemplate;
-
     /**
      * LUA脚本释放
+     * 分布式锁使用
+     * 涉及方法lock unlock 等
      */
     final String LUA_DELETE_LOCK = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del',KEYS[1]) else return 0 end";
 
     /**
      * 存储，没有时间限制
      */
-    public void stringSetWithoutExpire(Prefix prefix, String key , String value){
-        stringRedisTemplate.opsForValue().set(getCurrentKey(prefix, key), value);
-    }
-
-    public void stringSetWithExpire(Prefix prefix, String key ,Object value){
-        valueOperations.set( getCurrentKey(prefix, key), value, prefix.expire(), TimeUnit.SECONDS);
-    }
-
-    public Object stringGet(Prefix prefix, String key){
-        return stringRedisTemplate.opsForValue().get( getCurrentKey(prefix,key));
-    }
-
-    /**
-     * 存储，没有时间限制
-     */
-    public void setWithoutExpire(Prefix prefix, String key , Object value){
-        valueOperations.set( getCurrentKey(prefix, key), value, 0L);
+    public void setWithoutExpire(Prefix prefix, String key, Object value){
+        valueOperations.set(getCurrentKey(prefix, key), value);
     }
 
     public void setWithoutExpire(String key, Object value){
-        valueOperations.set( key, value, 0L);
+        valueOperations.set(key, value);
     }
 
     /**
@@ -80,14 +59,14 @@ public class RedisAuxiliary {
     }
 
     public void setWithExpire(String key ,Object value, long expireTime){
-        valueOperations.set( key, value, expireTime, TimeUnit.SECONDS);
+        valueOperations.set(key, value, expireTime, TimeUnit.SECONDS);
     }
 
     /**
      * 获取对象
      */
     public Object get(Prefix prefix, String key){
-        return valueOperations.get( getCurrentKey(prefix,key));
+        return valueOperations.get(getCurrentKey(prefix, key));
     }
 
     public Object get(String key){
@@ -97,19 +76,6 @@ public class RedisAuxiliary {
             return null;
         }
         return object;
-    }
-
-    /**
-     * @Limit 登录限制中，使用该方法获取数字
-     */
-    public Long getLong(String key){
-        try{
-            Long result = (Long)longRedisTemplate.opsForValue().get(key);
-            return result;
-        }catch (Exception e){
-            log.error("从缓存中获取Long 出错，请检查数据类型");
-            return 0L;
-        }
     }
 
     /**
@@ -123,10 +89,37 @@ public class RedisAuxiliary {
         redisTemplate.delete( key);
     }
 
+    public void delete(Prefix prefix, Collection<String> keys){
+        Set<String> ketSet = keys
+                .stream()
+                .map(item -> getCurrentKey(prefix, item))
+                .collect(Collectors.toSet());
+        redisTemplate.delete(ketSet);
+    }
+
+    public void delete(Collection<String> keys) {
+        redisTemplate.delete(keys);
+    }
+
     /**
-     * 获取所有的某前缀开头的key
+     * 是否存在key
      */
-    public Set<String> keys(Prefix prefix){
+    public Boolean hasKey(String key){
+        return redisTemplate.hasKey(key);
+    }
+
+    public Boolean hasKey(Prefix prefix, String key){
+        return redisTemplate.hasKey(getCurrentKey(prefix, key));
+    }
+
+    /**
+     * 查找匹配的Key
+     */
+    public Set<String> patternKeys(String pattern) {
+        return redisTemplate.keys(pattern);
+    }
+
+    public Set<String> prefixKeys(Prefix prefix){
         String base = "";
         if (!Objects.isNull(prefix)){
             base = prefix.getPrefix();
@@ -136,26 +129,95 @@ public class RedisAuxiliary {
         return keys;
     }
 
-    public Set<String> keys(String keysParam){
-        String keysParren = keysParam + "*";
-        Set keys = redisTemplate.keys( keysParren);
-        return keys;
+    /**
+     * 移除过期时间
+     */
+    public Boolean persist(String key){
+        return redisTemplate.persist(key);
+    }
+
+    public Boolean persist(Prefix prefix,String key){
+        return redisTemplate.persist(getCurrentKey(prefix, key));
+    }
+
+    /**
+     * 查看过期时间
+     */
+    public Long getTTL(String key){
+        return redisTemplate.getExpire(key);
+    }
+
+    public Long getTTL(Prefix prefix, String key){
+        return redisTemplate.getExpire(getCurrentKey(prefix, key));
+    }
+
+    /**
+     * 修改key的名称
+     */
+    public void rename(String oldKey, String newKey){
+        redisTemplate.rename(oldKey, newKey);
+    }
+
+    /**
+     * 修改key的名称
+     */
+    public void rename(Prefix prefix, String oldKey, String newKey){
+        redisTemplate.rename(getCurrentKey(prefix, oldKey), getCurrentKey(prefix, newKey));
+    }
+
+    /**
+     * getAndSet 获取旧值，设置新值
+     */
+    public Object getAndSet(Prefix prefix, String key, Object value) {
+        return valueOperations.getAndSet(getCurrentKey(prefix, key), value);
+    }
+
+    /**
+     * 批量获取
+     */
+    public List<Object> mutliGet(Collection<String> keys){
+        List<Object> objects = valueOperations.multiGet(keys);
+        return objects;
+    }
+
+    public List<Object> mutliGet(Prefix prefix, Collection<String> keys){
+        Set<String> ketSet = keys
+                .stream()
+                .map(item -> getCurrentKey(prefix, item))
+                .collect(Collectors.toSet());
+        List<Object> objects = valueOperations.multiGet(ketSet);
+        return objects;
+    }
+
+    /**
+     * 批量添加
+     */
+    public void multiSet(Prefix prefix, Map<String, Object> map) {
+        HashMap<String, Object> keyMap = Maps.newHashMap();
+        map.keySet().forEach(item -> {
+            keyMap.put(getCurrentKey(prefix, item), map.get(item));
+        });
+        valueOperations.multiSet(keyMap);
+    }
+
+    public void multiSet( Map<String, Object> map) {
+        valueOperations.multiSet(map);
     }
 
     /**
      * 增减 1
      */
-    public void incrByExpireTime(String key, int expireTime){
-        valueOperations.increment(key);
-        redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
-    }
-
     public void incr(String key){
         valueOperations.increment(key);
     }
 
     public void decr(String key){
         valueOperations.decrement(key);
+    }
+
+    public void incrByExpireTime(String key, int expireTime){
+        valueOperations.increment(key);
+        redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
     }
 
 
@@ -173,6 +235,9 @@ public class RedisAuxiliary {
     }
 
     /**
+     * ====================================分布式锁==========================================
+     *
+     *
      * 如果key不存在，则设置key 的值为 value. 存在则不设置
      * Boolean setIfAbsent(K key, V value);
      *
@@ -192,7 +257,6 @@ public class RedisAuxiliary {
      * 为 key的值末尾追加 value 如果key不存在就直接等于 set(K key, V value)
      * Integer append(K key, String value);
      */
-
 
     /**
      * 【分布式锁】获取锁

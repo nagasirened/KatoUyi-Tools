@@ -6,7 +6,6 @@ package com.katouyi.tools.redis.prefix;
  * @description: 认证用户信息
  * </p>
  * @author: ZengGuangfu
- * @since 2019-09-2019/9/20
  */
 public class StaticPrefix extends BasePrefix{
 
@@ -22,12 +21,9 @@ public class StaticPrefix extends BasePrefix{
     public static StaticPrefix ROOTCATEGORY = new StaticPrefix("rootCategory");
     public static StaticPrefix SUBCATEGORY = new StaticPrefix("subCategory:");
     public static StaticPrefix SHOPCART = new StaticPrefix("shopcart:");
-
-    /** 默认七天 */
     public static StaticPrefix CAS_USER_SESSION = new StaticPrefix(604800, "cas_user_session:");
     public static StaticPrefix LOGIN_EXPIRE = new StaticPrefix(604800, "login_with_expire:");
     public static StaticPrefix USER_TIECKET = new StaticPrefix(604800, "user_ticket:");
     public static StaticPrefix TMP_TIECKET = new StaticPrefix(300, "tmp_ticket:");
-
     public static StaticPrefix REIDS_NX_TEST = new StaticPrefix(300, "redisnx:");
 }
