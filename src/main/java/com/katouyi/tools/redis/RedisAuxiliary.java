@@ -1,9 +1,9 @@
 package com.katouyi.tools.redis;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.katouyi.tools.redis.prefix.Prefix;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -23,9 +23,10 @@ import java.util.stream.Collectors;
  * @author: ZengGuangfu
  */
 
-@Slf4j
 @Component
 public class RedisAuxiliary {
+
+    Logger log = LoggerFactory.getLogger(RedisAuxiliary.class);
 
     @Autowired
     private ValueOperations<String, Object> valueOperations;

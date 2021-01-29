@@ -17,20 +17,17 @@ import org.springframework.stereotype.Component;
      @TableField(fill = FieldFill.INSERT)
      private String createdTime;
  */
-@Slf4j
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("start insert fill ....");
         this.setInsertFieldValByName("createdTime", DateTime.now().toDate(), metaObject);
         this.setInsertFieldValByName("updatedTime", DateTime.now().toDate(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("start update fill ....");
         this.setInsertFieldValByName("updatedTime", DateTime.now().toDate(), metaObject);
     }
 }

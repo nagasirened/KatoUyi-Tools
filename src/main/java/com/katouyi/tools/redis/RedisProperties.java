@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  * @description: Redis配置信息
  * </p>
  * @author: ZengGuangfu
- * @since 2019-09-2019/9/23
  */
 
 @Data

@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -19,7 +19,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @description: redis配置相关
  * </p>
  * @author: ZengGuangfu
- * @since 2019-09-2019/9/20
  */
 
 @Configuration
