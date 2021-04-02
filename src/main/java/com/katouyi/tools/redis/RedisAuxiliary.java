@@ -5,6 +5,7 @@ import com.katouyi.tools.redis.prefix.Prefix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.script.RedisScript;
@@ -30,6 +31,9 @@ public class RedisAuxiliary {
 
     @Autowired
     private ValueOperations<String, Object> valueOperations;
+
+    @Autowired
+    private ListOperations<String, Object> listOperations;
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -220,7 +224,6 @@ public class RedisAuxiliary {
         valueOperations.increment(key);
         redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
     }
-
 
     /**
      * 工具类，获取完整的key值

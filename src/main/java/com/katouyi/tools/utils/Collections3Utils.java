@@ -35,14 +35,15 @@ public class Collections3Utils {
 	}
 
 	/**
-	 * 求并集，去重
+	 * 求并集，去重，不改变顺序
 	 * @param a
 	 * @param b
 	 * @param <T>
 	 * @return
 	 */
 	public static <T> List<T> unionAndDeduplication(final Collection<T> a, final Collection<T> b) {
-		ArrayList<T> result = new ArrayList<>(a);
+		ArrayList<T> result = new ArrayList<>(a.size() + b.size());
+		result.addAll(a);
 		for (T element : b) {
 			if (!result.contains(element)) {
 				result.add(element);
@@ -59,11 +60,12 @@ public class Collections3Utils {
 	 * @return
 	 */
 	public static <T> List<T> subtract(final Collection<T> a, final Collection<T> b) {
-		List<T> list = new ArrayList<>(a);
+		ArrayList<T> list = new ArrayList<>(a.size());
 		for (T element : b) {
-			list.remove(element);
+			if (!a.contains(b)) {
+				a.add(element);
+			}
 		}
-
 		return list;
 	}
 
@@ -75,7 +77,8 @@ public class Collections3Utils {
 	 * @return
 	 */
 	public static <T> List<T> intersection(Collection<T> a, Collection<T> b) {
-		List<T> list = new ArrayList<>();
+		int size = Math.min(a.size(), b.size());
+		List<T> list = new ArrayList<>(size);
 		for (T element : a) {
 			if (b.contains(element)) {
 				list.add(element);

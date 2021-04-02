@@ -1,0 +1,36 @@
+// 搜索条件 searchText
+
+SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+// 查询条件DSL语句
+BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+    // boolQueryBuilder.filter(QueryBuilders.termQuery("status", 0));
+    // 搜索关键字
+    boolQueryBuilder.should(QueryBuilders.matchQuery("nickname", searchText).minimumShouldMatch("60%"));
+    boolQueryBuilder.should(QueryBuilders.matchQuery("realname", searchText).minimumShouldMatch("60%"));
+    boolQueryBuilder.minimumShouldMatch(1);
+sourceBuilder.query(boolQueryBuilder);
+// 第一个数组是需要获取的字段（列）   第二个数组是不需要获取的字段
+sourceBuilder.fetchSource(new String[]{"id", "uid", "birthday", "nickname", "avatar_small", "avatar_large", "gender", "signature", "province", "city"}, null);
+// 排序规则  根据字段排序sourceBuilder.sort("postdate", SortOrder.DESC);
+sourceBuilder.sort(new ScoreSortBuilder().order(SortOrder.DESC));
+//sourceBuilder.sort(new FieldSortBuilder("play_count").order(SortOrder.DESC));
+// 高亮前缀和后缀，以及高亮的字段
+HighlightBuilder builder = new HighlightBuilder();
+    builder.preTags("<span style=\"color:red\">");
+    builder.postTags("</span>");
+    builder.field(new HighlightBuilder.Field("nickname"));
+    builder.field(new HighlightBuilder.Field("realname"));
+sourceBuilder.highlighter(builder);
+
+int rows = pager.getPageSize();
+int from = (pager.getPageNumber() - 1) * rows;
+// 分页查询
+sourceBuilder.from(from);
+sourceBuilder.size(rows);
+// 超时时长
+sourceBuilder.timeout(new TimeValue(10, TimeUnit.SECONDS));
+SearchRequest request = new SearchRequest();
+request.searchType(SearchType.DFS_QUERY_THEN_FETCH);
+request.source(sourceBuilder);
+// 索引和类型
+request.indices("user"); //.types();

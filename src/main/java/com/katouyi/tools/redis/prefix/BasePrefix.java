@@ -33,4 +33,5 @@ public abstract class BasePrefix implements Prefix {
     public String getPrefix() {
         return prefixStr;
     }
+
 }

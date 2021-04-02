@@ -1,3 +1,4 @@
+/*
 package com.katouyi.tools.logAspect.acpect;
 
 import com.katouyi.constant.wrapper.Wrapper;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+*/
 /**
  * 处理日志
- */
+ *//*
+
 
 @Slf4j
 @Aspect
@@ -48,3 +51,4 @@ public class LogAspect {
 
     }
 }
+*/
