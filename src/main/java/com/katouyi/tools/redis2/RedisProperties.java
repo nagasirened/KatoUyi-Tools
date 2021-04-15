@@ -1,6 +1,7 @@
 package com.katouyi.tools.redis2;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @date:2019/9/19 <br>
  * @version:1.0 <br>
  */
+@EnableConfigurationProperties
 @ConfigurationProperties(prefix = "redis")
 @Component
 public class RedisProperties {

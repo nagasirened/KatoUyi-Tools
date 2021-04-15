@@ -54,10 +54,13 @@ public class SearchWebMvcConfigurer extends WebMvcConfigurationSupport {
         return new BasedInterceptor();
     }
 
+
+
+    /*
     @Value("${dove.servers}")
     private String doveClientServers;
 
-    /*@Bean
+    @Bean
     public DoveConfigEngine doveConfigEngine() {
         return new DoveConfigEngine(doveClientServers);
     }*/
