@@ -15,9 +15,12 @@ spring:
     database: 0
     password:
 
-
 redis:
   cluster:
   hosts: 101.132.123.185
   port: 6379
   password:
+
+logging:
+  level:
+    root: INFO

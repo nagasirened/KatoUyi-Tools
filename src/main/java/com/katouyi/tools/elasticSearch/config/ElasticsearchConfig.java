@@ -1,5 +1,7 @@
 package com.katouyi.tools.elasticSearch.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -7,11 +9,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.atomic.LongAdder;
+
 /**
  * author: ZGF
  * context : ES 配置类
  */
-
+@Slf4j
 @Configuration
 public class ElasticsearchConfig {
 

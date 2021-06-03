@@ -14,8 +14,8 @@ import java.util.concurrent.*;
 public class CustomThreadPool {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Primary
-    @Bean(name = "asyncThreadPool")
+    //@Primary
+    //@Bean(name = "asyncThreadPool")
     public ThreadPoolExecutor asyncThreadPoolTaskExecutor() {
         return new ThreadPoolExecutor(
                 3,
