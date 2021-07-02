@@ -24,3 +24,11 @@ redis:
 logging:
   level:
     root: INFO
+
+
+
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: newProducer
