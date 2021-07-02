@@ -200,13 +200,36 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
      */
 
     /**
-     * 判断是否是完全二叉树
+     * 判断是否是完全二叉树 : 使用层级遍历
      * 使用层级遍历的方式判断：1.如果左右都有，就加入到队列
      *                    2.如果右有左没有，判false
      *                    3.如果左右都没有或者左有右没有，那么它后面的节点必须没有子节点
      */
     public boolean isComplete() {
-        return false;
+        if (root == null) return false;
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(root);
+
+        boolean leaf = false;  // 如果leaf == ture的时候，剩下的节点不能有子节点
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (leaf && (node.left != null || node.right != null)) {
+                return false;
+            }
+
+            if (node.left != null && node.right != null) {
+                queue.offer(node.left);
+                queue.offer(node.right);
+            } else if (node.left == null && node.right != null) {
+                return false;
+            } else {            // (node.left != null && node.right == null)  或  (node.left == null && node.right == null)
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                leaf = true;
+            }
+        }
+        return true;
     }
 
     public static class Node<E> {
@@ -256,16 +279,48 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
 
     // 计算某一个节点的高度: 等于它的左右子节点中高度最高的节点的高度+1
     public int height(Node<E> node) {
-        if (node.left == null && node.right == null) return 1;
+        if (node == null) return 0;
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
+    /** 非递归的形式，层序遍历获取 */
+    public int height2 (){
+        if (root == null) return 0;
+        Queue<Node<E>> queue = new LinkedList<>();
+        int height = 1;
+        queue.offer(root);
+        int levelSize = queue.size();      // 存储每一层有多少个元素
+
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
+            // 意味着即将要访问下一层
+            if (--levelSize == 0) {
+                height++;
+                levelSize = queue.size();
+            }
+        }
+        return height - 1;
+    }
+
+
+    /**
+     * ==================================================================================================
+     * 测试
+     * ==================================================================================================
+     */
     public static void main(String[] args) {
         Comparator<User> comparator = (user1, user2) -> user1.getAge() - user2.getAge();
         DefaultBinarySearchTree<User> userBinarySearchTree = new DefaultBinarySearchTree<>();
 
         DefaultBinarySearchTree<Integer> intTree = new DefaultBinarySearchTree<>();
-        Integer[] data = new Integer[]{7,4,9,2,1,3,5,9,8,11,10,12};
+        // Integer[] data = new Integer[]{7,4,9,2,1,3,5,9,8,11,10,12};
+        Integer[] data = new Integer[]{7,4,9,2,1};
         for (Integer in : data) {
             intTree.add(in);
         }
@@ -279,7 +334,9 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
                 return false;
             }
         });
-        System.out.println(intTree.toString());
+        System.out.println();
+        System.out.println("height:" + intTree.height());
+        System.out.println("isComplete:" + intTree.isComplete());
     }
 
 }
