@@ -1,0 +1,81 @@
+server:
+  port: 56081
+spring:
+  application:
+    name: sharding-jdbc-simple-demo
+  ## sharding-jdbc
+  # 1.数据源
+  shardingsphere:
+    datasource:
+      names: m1,m2,m0,s0
+      m1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/order_db_1?useUnicode=true
+        username: root
+        password: qwer1011
+      m2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/order_db_2?useUnicode=true
+        username: root
+        password: qwer1011
+      ## 数据库user_db的主从关系
+      m0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/user_db?useUnicode=true
+        username: root
+        password: qwer1011
+      s0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3307/user_db?useUnicode=true    # 3307另外一个pod了
+        username: root
+        password: qwer1011
+    sharding:
+      tables:
+        t_user:
+          # actual-data-nodes: m0.t_user   # m$->{0}.t_user  配置主从后，就要使用主从的别名ds0了
+          actual-data-nodes: ds0.t_user
+          # 但是需要配置分表策略
+          key-generator: # 主键也可以自己代码生成
+            column: user_id
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: t_user
+        t_order:    # {1..2}表示1到2  t_order_1 和 t_order_2
+          actual-data-nodes: m$->{1..2}.t_order_$->{1..2}
+          # 全局主键生成策略
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+          database‐strategy: # 水平分库策略
+            inline:
+              sharding‐column: user_id
+              algorithm‐expression: m$->{user_id % 2 + 1}
+          table-strategy:     # 分表策略
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_$->{order_id % 2 + 1}
+      # list类型，公共表；对公共表的修改，会在每个数据库都执行一次
+      broadcast-tables: t_dict
+      # m0和s0 是主从库，在这里配置
+      master-slave-rules:
+        ds0:    # 自定义命名
+          master-data-source-name: m0
+          slave-data-source-names: s0
+    # 输出sql日志
+    props:
+      sql:
+        show: true
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  #global-config:
+  #  db-config:
+  #    table-prefix: t_
