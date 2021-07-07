@@ -69,9 +69,7 @@ public class ZkLock implements AutoCloseable, Watcher {
 
             System.out.println("成功获取到锁2");
             return true;
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
 
