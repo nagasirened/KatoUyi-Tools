@@ -14,6 +14,8 @@ import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.get.MultiGetRequest;
+import org.elasticsearch.action.get.MultiGetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -176,6 +178,12 @@ public class DefaultHignLevelDocumentHandler<T, ID> implements HignLevelDocument
         SearchRequest searchRequest = new SearchRequest(indexName);
         searchRequest.source(searchSourceBuilder);
         return client.search(searchRequest, RequestOptions.DEFAULT);
+    }
+
+    public MultiGetResponse multiGet(List<ID> idList) throws IOException {
+        MultiGetRequest multiGetRequest = new MultiGetRequest();
+        idList.forEach(item -> multiGetRequest.add(indexName, String.valueOf(item)));
+        return client.mget(multiGetRequest, RequestOptions.DEFAULT);
     }
 
     private boolean judgeId(T t){
