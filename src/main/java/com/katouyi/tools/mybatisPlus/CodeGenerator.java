@@ -1,3 +1,4 @@
+/*
 package com.katouyi.tools.mybatisPlus;
 
 
@@ -10,10 +11,12 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
+*/
 /**
  * @description: 代码生成器, 修改 策略配置中setInclude 的内容，即可创建表了
  * @author: ZengGuangfu
- */
+ *//*
+
 public class CodeGenerator {
 
     public static void main(String[] args) {
@@ -71,3 +74,4 @@ public class CodeGenerator {
         autoGenerator.execute();
     }
 }
+*/
