@@ -19,7 +19,6 @@ public class _003Producer发送单向消息 {
         producer.start();
 
         int messageCount = 100;
-        final CountDownLatch countDownLatch = new CountDownLatch(messageCount);
         for (int i = 0; i < messageCount; i++) {
             int index = i;
             Message message = new Message("test_topic_c",

@@ -36,11 +36,13 @@ public class _002Producer发送异步消息 {
             producer.send(message, new SendCallback() {
                 @Override
                 public void onSuccess(SendResult sendResult) {
+                    countDownLatch.countDown();
                     log.info("consumer success: {}" + sendResult.getMsgId());
                 }
 
                 @Override
                 public void onException(Throwable throwable) {
+                    countDownLatch.countDown();
                     log.error("consumer fail: {}", throwable.getMessage(), throwable);
                 }
             });

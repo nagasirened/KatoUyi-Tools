@@ -30,6 +30,8 @@ public class SpringProducer {
     public void sendMsg(String topic, String msg) {
         log.info("发送报文：" + msg);
         rocketMQTemplate.convertAndSend(topic, msg);
+        // 延迟且可以重复发送
+        rocketMQTemplate.syncSend(topic, new GenericMessage<>(msg), 3000, 3);
     }
 
     /**
