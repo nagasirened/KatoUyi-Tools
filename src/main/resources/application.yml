@@ -7,6 +7,8 @@ fdfs:
 
 
 spring:
+  application:
+    name: katouyi-tools
   redisson:
     hostPort: 101.132.123.185:6379
   redis:
@@ -15,20 +17,27 @@ spring:
     database: 0
     password:
 
-redis:
-  cluster:
-  hosts: 101.132.123.185
-  port: 6379
-  password:
+#redis:
+#  cluster:
+#  hosts: 101.132.123.185
+#  port: 6379
+#  password:
 
 logging:
   level:
     root: INFO
 
-
-
-
 rocketmq:
   name-server: 127.0.0.1:9876
   producer:
     group: newProducer
+
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+      base-path: /metrics

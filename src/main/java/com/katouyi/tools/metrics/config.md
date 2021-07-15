@@ -15,13 +15,13 @@ Micrometer 中有两个最核心的概念，分别是计量器（Meter）和计�
 
 ###2、Spring Boot 工程集成 Micrometer
 ```xml
- <dependency>
+<dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 <dependency>
-  <groupId>io.micrometer</groupId>
-  <artifactId>micrometer-registry-prometheus</artifactId>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
 </dependency>
 ```
 这里引入了 io.micrometer 的 micrometer-registry-prometheus 依赖以及 spring-boot-starter-actuator 依赖，因为该包对 Prometheus 进行了封装，可以很方便的集成到 Spring Boot 工程中。
