@@ -1,0 +1,34 @@
+1. 根据某个指标分组展示平均数   每个召回源召回的歌曲数
+avg(reco_api_recall_size{app="ky-algorithm-recommend-api"}) by (recallSource)
+Legend  {{recallSource}}
+
+2.取某个指标的最大最小值
+min(reco_api_gauge{gaugeName="rankReturnSize"})         Legend  min
+max(reco_api_gauge{gaugeName="rankReturnSize"})         Legend  max
+
+3.蛇形前每个召回源数据的占比
+avg(reco_api_music_proportion{app="ky-algorithm-recommend-api",stageName="beforeSnakeMergeRecallSource"}) by (tagName)
+Legend   {{recallSource}}
+
+4.累计两分钟内的某个指标的和
+sum(increase(reco_api_music_proportion_counter_total{application="ky-algorithm-recommend-api",stageName="beforeSnakeMergeSourceCounter"} [2m])) by (counterName)
+Legend   {{counterName}}
+
+5.冷启动成功量
+data_import_gauge_double{application="rec-data-import",gaugeDoubleName="coldStartSuccess"}
+Legend  current
+
+data_import_gauge_double{application="rec-data-import",gaugeDoubleName="coldStartSuccess"} offset 1d
+Legend  offset 1d
+
+data_import_gauge_double{application="rec-data-import",gaugeDoubleName="coldStartSuccess"} offset 7d
+Legend  offset 1d
+
+6.多路召回耗时
+max(method_timed_seconds{class="com.ky.recommend.service.impl.RecallRateFeatureServiceImpl",method="multiChannelV2",quantile="0.5"})
+max(method_timed_seconds{class="com.ky.recommend.service.impl.RecallRateFeatureServiceImpl",method="multiChannelV2",quantile="0.9"})
+max(method_timed_seconds{class="com.ky.recommend.service.impl.RecallRateFeatureServiceImpl",method="multiChannelV2",quantile="0.99"})
+
+7.recallModel线程池监控
+max(reco_api_thread_pool_monitor{parameterName="recallSourceActiveCount"})
+max(reco_api_thread_pool_monitor{parameterName="recallSourceQueueSize"})
