@@ -26,13 +26,10 @@ public class _001HelloClient {
                         ch.pipeline().addLast(new StringEncoder());
                     }
                 })
-                // 6.连接到服务器   connect方法是异步非阻塞方法，不加入sync()的方法的话，最后的writeAndFlush消息可能就在真正连接成功之前发送，会发送不到消息。
+                // 6.连接到服务器
                 .connect(new InetSocketAddress("localhost", 8080))
-
-                // 下面是ChannelFuture的方法
                 .sync()
                 .channel()
-                // 向服务器发送数据
                 .writeAndFlush("hello world!!!");
     }
 }
