@@ -27,7 +27,8 @@ public class _005Pipeline {
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 log.info("h1");
-                                super.channelRead(ctx, msg);
+                                // super.channelRead(ctx, msg);
+                                ctx.fireChannelRead(msg); // 不传递的话到这儿就阻断了
                             }
                         });
                         pipeline.addLast("h2", new ChannelInboundHandlerAdapter(){
@@ -36,8 +37,10 @@ public class _005Pipeline {
                                 log.info("h2");
                                 super.channelRead(ctx, msg);
 
-                                /** XXX 写个消息试一下outBound */
-                                ch.writeAndFlush(ctx.alloc().buffer().writeBytes("testInfo".getBytes()));
+                                /** XXX 写个消息试一下outBound   是从tail处理器开始，往前找，因此会经过所有的outBound */
+                                ch.writeAndFlush(ctx.alloc().buffer().writeBytes("ch-testInfo".getBytes()));
+                                /** XXX ctx.writeAndFlush  是从当前处理器往前找，即从 h3 开始往之前找 */
+                                ctx.writeAndFlush(ctx.alloc().buffer().writeBytes("ctx-testInfo".getBytes()));
                             }
                         });
 
