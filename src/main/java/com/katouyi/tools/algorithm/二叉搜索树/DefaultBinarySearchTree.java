@@ -80,10 +80,82 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         size++;
     }
 
+    /**
+     * 1.删除叶子节点，直接 node.parent.left = null 或  node.parent.right = null
+     * 2.删除度为1的节点，找到它的child，node.parent.left = child 或者 node.parent.right = child
+     * 3.删除度为2的节点，需要在它的左子树找到前驱节点或者右子树的后继节点(大小最接近的)N，把哪个节点N的值直接设置到当前节点，然后删除N节点就行
+     */
     @Override
     public void remove(E element) {
-
+        remove(node(element));
     }
+    // 先根据数值查找Node
+    private Node<E> node(E element) {
+        Node<E> node = root;
+        while (node != null) {
+            int cmp = compare(element, node.element);
+            if (cmp > 0) {
+                node = node.right;
+            } else if (cmp < 0) {
+                node = node.left;
+            } else {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    public void remove(Node<E> node) {
+        if (node == null) return;
+        // node != null 说明一定能删除
+        size--;
+        // 度为2的节点
+        if (node.left != null && node.right != null) {
+            Node<E> predecessor = predecessor(node);
+        }
+    }
+
+    /**
+     * 获取前驱节点 如果Node.left != null，那么它子树中一定存在前驱节点。且前驱节点存在于它的左子树的最右边
+     * 如果node.left == null, 它的左子树为null, 那么它的前驱节点需要从它的父节点中找。即node.parent.right = node 依此循环找到它的前驱节点
+     */
+    private Node<E> predecessor(Node<E> node) {
+        // node.left.right.right.right...
+        if (node.left != null) {
+            Node<E> predecessor = node.left;
+            while (predecessor.right != null) {
+                predecessor = predecessor.right;
+            }
+            return predecessor;
+        }
+
+        // node.parent.parent.parent...  截止条件是node在它的父节点的右子树中
+        while (node.parent != null && node.parent.left == node) {
+            node = node.parent;
+        }
+        // 推出循环的条件是 node.parent == null(代表没有前驱，返回null, 也就是node.parent)
+        // 或者  node.parent.right == node  那么node.parent就是前驱节点
+        return node.parent ;
+    }
+
+    /**
+     * 获取后继节点
+     */
+    private Node<E> successor(Node<E> node) {
+        if (node.right != null) {
+            Node<E> successor = node.right;
+            while (successor.left != null) {
+                successor = successor.left;
+            }
+            return successor;
+        }
+
+        while (node.parent != null && node.parent.right == node) {
+            node = node.parent;
+        }
+        return node.parent;
+    }
+
 
     @Override
     public boolean contains(E element) {
@@ -324,6 +396,12 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         for (Integer in : data) {
             intTree.add(in);
         }
+        Node<Integer> predecessor = intTree.predecessor(intTree.root);
+        System.out.println("跟节点的前驱节点是：" + predecessor.element);
+
+        Node<Integer> successor = intTree.successor(intTree.root);
+        System.out.println("跟节点的后继节点是：" + successor.element);
+
         intTree.rankOrderTree(new Visitor<Integer>() {
             @Override
             public boolean visit(Integer element) {
