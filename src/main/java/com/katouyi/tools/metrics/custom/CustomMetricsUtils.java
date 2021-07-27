@@ -62,7 +62,8 @@ public class CustomMetricsUtils {
     public void timerMetrics(Sample sample, String className, String methodName) {
         // Timer.Sample sample = Timer.start();  开启打点
         // Thread.currentThread().getStackTrace()[0].getClassName();  获取当前栈针的类名和方法名
-        Timer timer = builder(pieceName(TIMER_NAME)).tags("class", className, "method", methodName)
+        Timer timer = builder(pieceName(TIMER_NAME))
+                .tags("class", className, "method", methodName)
                 .publishPercentiles(PERCENTILES_ARRAY).register(Metrics.globalRegistry);
         sample.stop(timer);
     }

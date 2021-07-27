@@ -392,15 +392,15 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
 
         DefaultBinarySearchTree<Integer> intTree = new DefaultBinarySearchTree<>();
         // Integer[] data = new Integer[]{7,4,9,2,1,3,5,9,8,11,10,12};
-        Integer[] data = new Integer[]{7,4,9,2,1};
+        Integer[] data = new Integer[]{7,4,9,2,1,8};
         for (Integer in : data) {
             intTree.add(in);
         }
         Node<Integer> predecessor = intTree.predecessor(intTree.root);
-        System.out.println("跟节点的前驱节点是：" + predecessor.element);
+        System.out.println("节点的前驱节点是：" + predecessor.element);
 
-        Node<Integer> successor = intTree.successor(intTree.root);
-        System.out.println("跟节点的后继节点是：" + successor.element);
+        Node<Integer> successor = intTree.successor(intTree.root.right.left);
+        System.out.println("节点的后继节点是：" + successor.element);
 
         intTree.rankOrderTree(new Visitor<Integer>() {
             @Override

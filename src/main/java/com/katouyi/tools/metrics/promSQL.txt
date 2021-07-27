@@ -14,7 +14,7 @@ Legend   {{recallSource}}
 sum(increase(reco_api_music_proportion_counter_total{application="ky-algorithm-recommend-api",stageName="beforeSnakeMergeSourceCounter"} [2m])) by (counterName)
 Legend   {{counterName}}
 
-5.冷启动成功量
+5.cold_start 成功量
 data_import_gauge_double{application="rec-data-import",gaugeDoubleName="coldStartSuccess"}
 Legend  current
 

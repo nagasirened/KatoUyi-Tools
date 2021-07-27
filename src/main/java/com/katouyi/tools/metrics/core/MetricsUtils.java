@@ -52,8 +52,10 @@ public class MetricsUtils {
      * 方法耗时
      */
     public static void methodTimer(Timer.Sample sample, String methodName) {
-        Timer timer = Timer.builder(MetricNameEnum.METHOD_TIMER.getName()).tag(MetricConstant.METHOD_NAME, methodName)
-                .publishPercentileHistogram().publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
+        Timer timer = Timer.builder(MetricNameEnum.METHOD_TIMER.getName())
+                .tag(MetricConstant.METHOD_NAME, methodName)
+                .publishPercentileHistogram()
+                .publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
         sample.stop(timer);
     }
 
@@ -61,8 +63,10 @@ public class MetricsUtils {
      * 记录 模型 方法耗时
      */
     public static void methodModelTimer(Timer.Sample sample, String methodName, String model) {
-        Timer timer = Timer.builder(MetricNameEnum.METHOD_MODEL_TIMER.getName()).tags(MetricConstant.METHOD_NAME, methodName, "model", model)
-                .publishPercentileHistogram().publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
+        Timer timer = Timer.builder(MetricNameEnum.METHOD_MODEL_TIMER.getName())
+                .tags(MetricConstant.METHOD_NAME, methodName, "model", model)
+                .publishPercentileHistogram()
+                .publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
         sample.stop(timer);
     }
 

@@ -27,8 +27,7 @@ public class RedissonConfig {
         config.useSingleServer().setAddress("redis://localhost:6379");
         config.setTransportMode(TransportMode.NIO);
         config.setCodec(JsonJacksonCodec.INSTANCE);
-        RedissonClient redisson = Redisson.create(config);
-        return redisson;
+        return Redisson.create(config);
     }
 
     public static void main(String[] args) {
