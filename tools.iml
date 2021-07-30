@@ -15,6 +15,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.apache.velocity:velocity-engine-core:2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-generator:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-extension:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-core:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-annotation:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.3.0.RELEASE" level="project" />
@@ -76,11 +84,6 @@
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.3.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson-spring-boot-starter:3.14.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:2.3.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator-autoconfigure:2.3.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:2.3.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.5.1" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.latencyutils:LatencyUtils:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson:3.14.0" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.49.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.49.Final" level="project" />
@@ -143,17 +146,15 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-boot-starter:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-extension:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-core:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-annotation:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:3.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.velocity:velocity-engine-core:2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-generator:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-extension:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-core:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-annotation:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.16" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:29.0-jre" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:failureaccess:1.0.1" level="project" />
@@ -220,7 +221,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.jettison:jettison:1.1" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-core:4.5.10" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.jacoco:org.jacoco.agent:runtime:0.8.5" level="project" />
@@ -241,5 +241,64 @@
     <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:4.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-mongodb:3.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-jdbc-spring-boot-starter:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-spring-boot-util:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-common:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-common:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-spi:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-binder:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-api:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:encrypt-core-api:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:encrypt-core-common:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy:indy:2.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-transaction-spring:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-transaction-core:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-jdbc-core:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-pluggable:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-route:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-rewrite-engine:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-executor:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-merge:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-sql92:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-engine:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-spi:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-statement:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-mysql:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-postgresql:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-oracle:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shardingsphere-sql-parser-sqlserver:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-route:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:master-slave-core-route:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-rewrite:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:encrypt-core-rewrite:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:shadow-core-rewrite:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-execute:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:sharding-core-merge:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shardingsphere:encrypt-core-merge:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-client:4.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-common:4.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-remoting:4.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-logging:4.3.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.30.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-spring-boot:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-acl:4.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-srvutil:4.8.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-validator:commons-validator:1.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-digester:commons-digester:1.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.2.6.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.49.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator-autoconfigure:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.5.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.latencyutils:LatencyUtils:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-registry-prometheus:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_common:0.8.1" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.8.1" level="project" />
   </component>
 </module>
