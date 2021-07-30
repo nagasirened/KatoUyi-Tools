@@ -1,4 +1,4 @@
-package com.katouyi.tools.proto.test;
+package com.katouyi.tools.proto.protoStuff.test;
 
 import lombok.Data;
 

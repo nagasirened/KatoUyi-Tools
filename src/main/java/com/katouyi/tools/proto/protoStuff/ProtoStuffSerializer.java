@@ -1,4 +1,4 @@
-package com.katouyi.tools.proto;
+package com.katouyi.tools.proto.protoStuff;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtobufIOUtil;

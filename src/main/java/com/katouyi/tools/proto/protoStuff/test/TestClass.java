@@ -1,9 +1,9 @@
-package com.katouyi.tools.proto.test;
+package com.katouyi.tools.proto.protoStuff.test;
 
 import com.alibaba.fastjson.JSON;
-import com.katouyi.tools.proto.JdkSerializer;
-import com.katouyi.tools.proto.JsonSerializer;
-import com.katouyi.tools.proto.ProtoStuffSerializer;
+import com.katouyi.tools.proto.protoStuff.JdkSerializer;
+import com.katouyi.tools.proto.protoStuff.JsonSerializer;
+import com.katouyi.tools.proto.protoStuff.ProtoStuffSerializer;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -1,4 +1,4 @@
-package com.katouyi.tools.proto;
+package com.katouyi.tools.proto.protoStuff;
 
 public interface Serializer {
 
