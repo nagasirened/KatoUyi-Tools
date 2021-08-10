@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package mygrpc;
+option java_package="com.katouyi.tools";
+option java_outer_classname = "NumberAddServiceProto";
+option java_multiple_files = true;
+
+service NumberAddService {
+  rpc add(AddRequest) returns (AddReply) {}
+}
+
+message AddRequest {
+  int32 factorA = 1;
+  int32 factorB = 2;
+}
+
+message AddReply {
+  int32 res = 1;
+}
