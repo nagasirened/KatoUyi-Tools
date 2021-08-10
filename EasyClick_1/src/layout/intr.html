@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- head 中 -->
+    <link rel="stylesheet" href="css/frozen.css">
+
+
+    <title>H5 网页示例</title>
+</head>
+<body style="padding: 20px">
+<H4>以下是服务控制演示</H4>
+
+
+<div class="ui-tooltips">
+    <div class="ui-tooltips-cnt ui-border-b demo-desc">
+        <div id="service">运行模式</div>
+    </div>
+</div>
+
+<div class="ui-form-item ui-form-item-switch ui-border-b">
+    <p>
+        服务状态
+    </p>
+    <label class="ui-switch">
+        <input type="checkbox" checked="">
+    </label>
+</div>
+<div class="" style="padding: 5px">
+
+    <a class="ui-btn-lg ui-btn-primary" onclick="openEnv()">
+        启动环境
+    </a>
+</div>
+
+
+<!-- body 最后 -->
+<script src="htmljs/jquery.min.js"></script>
+</body>
+
+
+<script>
+    $(function () {
+        var serviceMode = window.ec.isAccMode() ? "无障碍服务" : "代理服务";
+        $("#service").text("运行模式: " + serviceMode);
+
+        var serviceOk = false;
+        if (window.ec.isAccMode()) {
+            serviceOk = window.ec.isAccServiceOk();
+        } else {
+            serviceOk = window.ec.isAgentServiceOk();
+        }
+        if (serviceOk) {
+            $("#serviceOk").prop("checked", true);
+        } else {
+            $("#serviceOk").prop("checked", false);
+        }
+    });
+
+    function openEnv() {
+        var r = window.ec.startEnv();
+        $("#serviceOk").prop("checked", r);
+    }
+
+
+</script>
+
+</html>

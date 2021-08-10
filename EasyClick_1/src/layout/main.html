@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <title>FrozenUI Demo</title>
+    <!-- 引入 FrozenUI -->
+    <link rel="stylesheet" href="css/frozen.css"/>
+    <style>
+        body > a {
+            display: none;
+        }
+
+        .demo-desc {
+            padding: 5px;
+            font-size: 14px;
+            color: #7CAE23;
+        }
+    </style>
+</head>
+<body style="background-color: #fff">
+
+<div class="ui-tooltips">
+    <div class="ui-tooltips-cnt ui-border-b">
+        本网页使用QQ FrozenUI构建，地址: <a href="https://frozenui.github.io">FrozenUI</a>
+    </div>
+</div>
+
+<div class="ui-form ui-border-t">
+    <form>
+        <div class="ui-form-item ui-border-b">
+            <label>
+                姓名
+            </label>
+            <input type="text" placeholder="请输入姓名" id="name" name="name"/>
+        </div>
+
+        <div class="ui-form-item ui-border-b">
+            <label>
+                年龄
+            </label>
+            <input type="text" placeholder="请输入年龄" id="age" name="age"/>
+        </div>
+
+        <div class="ui-tooltips">
+            <div class="ui-tooltips-cnt ui-border-b demo-desc">
+                年级
+            </div>
+        </div>
+        <div class="ui-form-item ui-form-item-radio ui-border-b">
+            <label class="ui-radio" for="radio">
+                <input type="radio" name="radio" id="one">
+            </label>
+            <p>一年级</p>
+        </div>
+        <div class="ui-form-item ui-form-item-radio ui-border-b">
+
+            <label class="ui-radio" for="radio">
+                <input type="radio" checked="" name="radio" id="two">
+            </label>
+            <p>二年级</p>
+        </div>
+        <div class="ui-form-item ui-form-item-radio ui-border-b">
+
+            <label class="ui-radio" for="radio">
+                <input type="radio" checked="" name="radio" id="three">
+            </label>
+            <p>三年级</p>
+        </div>
+
+        <div class="ui-tooltips">
+            <div class="ui-tooltips-cnt ui-border-b demo-desc">
+                爱好
+            </div>
+        </div>
+        <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+            <label class="ui-checkbox">
+                <input type="checkbox" name="aihao" id="music">
+            </label>
+            <p>听音乐</p>
+        </div>
+        <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+            <label class="ui-checkbox">
+                <input type="checkbox" checked="" name="aihao" id="sing">
+            </label>
+            <p>唱歌</p>
+        </div>
+
+        <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+            <label class="ui-checkbox">
+                <input type="checkbox" checked="" name="aihao" id="dance">
+            </label>
+            <p>跳舞</p>
+        </div>
+
+        <div class="ui-form-item ui-border-b">
+            <label>性别</label>
+            <div class="ui-select">
+                <select name="sex">
+                    <option value="男同学">男同学</option>
+                    <option value="女同学">女同学</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="ui-tooltips">
+            <div class="ui-tooltips-cnt ui-border-b demo-desc">
+                开关
+            </div>
+        </div>
+
+        <div class="ui-form-item ui-form-item-switch ui-border-b">
+            <p>
+                开关文字
+            </p>
+            <label class="ui-switch">
+                <input type="checkbox" checked="">
+            </label>
+        </div>
+
+        <div class="ui-form-item ui-form-item-textarea  ui-border-b demo-desc" style="height: 50px">
+            <label for="mark">备注</label><textarea placeholder=""
+                                                  style="height: 80%"
+                                                  id="mark" name="mark"></textarea>
+        </div>
+
+        <div class="" style="padding: 5px">
+            <a class="ui-btn-lg " onclick="javascript:save()">
+                保存参数
+            </a>
+        </div>
+        <div class="" style="padding: 5px">
+
+            <a class="ui-btn-lg ui-btn-primary" onclick="javascript:window.ec.start()">
+                启动脚本
+            </a>
+        </div>
+    </form>
+</div>
+<script src="htmljs/jquery.min.js"></script>
+</body>
+
+<script>
+    //隐藏开始按钮
+    window.ec.hideStartBtn();
+
+    $(function () {
+        //使用jquery进行设置值
+        //取得参数并且进行设置
+        var name = window.ec.getConfig("name");
+        $("#name").val(name);
+
+        var mark = window.ec.getConfig("mark");
+        $("#mark").val(mark);
+
+        var age = window.ec.getConfig("age");
+        $("#age").val(age);
+        var one = window.ec.getConfig("one");
+        if (one === "true") {
+            $("#one").attr("checked", "checked");
+        }
+        var two = window.ec.getConfig("two");
+        if (two === "true") {
+            $("#two").attr("checked", "checked");
+        }
+        var three = window.ec.getConfig("three");
+        if (three === "true") {
+            $("#three").attr("checked", "checked");
+        }
+
+        var music = window.ec.getConfig("music");
+        if (music === "true") {
+            $("#music").attr("checked", "checked");
+        }
+
+
+        var sing = window.ec.getConfig("sing");
+        if (sing === "true") {
+            $("#sing").attr("checked", "checked");
+        }
+
+        var dance = window.ec.getConfig("dance");
+        if (dance === "true") {
+            $("#dance").attr("checked", "checked");
+        }
+
+        var sex = window.ec.getConfig("sex");
+        $("select[name=sex]").find("option[value='" + sex + "']").attr("selected", true);
+    });
+
+
+    //保存参数的函数
+    function save() {
+        var name = $("#name").val();
+        window.ec.saveConfig("name", name);
+        var age = $("#age").val();
+        window.ec.saveConfig("age", age);
+        //一年级
+        window.ec.saveConfig("one", $("#one").prop("checked"));
+        window.ec.saveConfig("two", $("#two").prop("checked"));
+        window.ec.saveConfig("three", $("#three").prop("checked"));
+
+        window.ec.saveConfig("music", $("#music").prop("checked"));
+        window.ec.saveConfig("sing", $("#sing").prop("checked"));
+        window.ec.saveConfig("dance", $("#dance").prop("checked"));
+
+        window.ec.saveConfig("mark", $("#mark").val());
+
+
+        var sex = $("select[name=sex]").find("option:selected").val();
+        window.ec.saveConfig("sex", sex);
+
+        window.ec.toast("保存成功");
+
+
+    }
+
+</script>
+</html>
