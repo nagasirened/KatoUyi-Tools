@@ -303,7 +303,7 @@
                     <protocArtifact>com.google.protobuf:protoc:3.12.0:exe:${os.detected.classifier}</protocArtifact>
                     <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.29.0:exe:${os.detected.classifier}</pluginArtifact>
-                    <!--<protoSourceRoot>src/main/resources/proto</protoSourceRoot>-->
+                    <protoSourceRoot>src/main/resources/proto</protoSourceRoot>
                 </configuration>
                 <executions>
                     <execution>

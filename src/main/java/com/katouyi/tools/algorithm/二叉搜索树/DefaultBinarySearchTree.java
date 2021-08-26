@@ -83,12 +83,13 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
     /**
      * 1.删除叶子节点，直接 node.parent.left = null 或  node.parent.right = null
      * 2.删除度为1的节点，找到它的child，node.parent.left = child 或者 node.parent.right = child
-     * 3.删除度为2的节点，需要在它的左子树找到前驱节点或者右子树的后继节点(大小最接近的)N，把哪个节点N的值直接设置到当前节点，然后删除N节点就行
+     * 3.删除度为2的节点，需要在它的左子树找到前驱节点或者右子树的后继节点(大小最接近的)N，把哪个节点N的值直接设置到当前节点，然后删除N节点就行(前驱和后继节点的度只能为1或者0)
      */
     @Override
     public void remove(E element) {
         remove(node(element));
     }
+
     // 先根据数值查找Node
     private Node<E> node(E element) {
         Node<E> node = root;
@@ -105,13 +106,41 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         return null;
     }
 
+    /**
+     * 删除节点
+     */
     public void remove(Node<E> node) {
         if (node == null) return;
         // node != null 说明一定能删除
         size--;
         // 度为2的节点
         if (node.left != null && node.right != null) {
+            // 获取前驱节点
             Node<E> predecessor = predecessor(node);
+            // 用前驱节点的值覆盖当前节点的值
+            node.element = predecessor.element;
+            // 赋值了之后，将node指向将要被删除前驱节点（此时这个节点必为度1或者度0）
+            node = predecessor;
+        }
+        // 删除node节点（度为1或者度为0）
+        Node<E> child = node.left != null ? node.left : node.right;
+        if (child != null) {        // 度为1的节点
+            child.parent = node.parent;
+            if (node.parent == null) {  // node是根节点，且度为1
+                root = child;
+            } else if (node == node.parent.left) {
+                node.parent.left = child;
+            } else {
+                node.parent.right = child;
+            }
+        } else if (node == root) {  // 此时child==null, 再如果node==root,说明它是唯一的根节点，也是叶子节点
+            root = null;
+        } else {  // 是叶子节点，不是根节点
+            if (node.parent.left == node) {
+                node.parent.left = null;
+            } else {
+                node.parent.right = null;
+            }
         }
     }
 
@@ -391,8 +420,8 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         DefaultBinarySearchTree<User> userBinarySearchTree = new DefaultBinarySearchTree<>();
 
         DefaultBinarySearchTree<Integer> intTree = new DefaultBinarySearchTree<>();
-        // Integer[] data = new Integer[]{7,4,9,2,1,3,5,9,8,11,10,12};
-        Integer[] data = new Integer[]{7,4,9,2,1,8};
+        Integer[] data = new Integer[]{7,4,9,2,1,3,5,9,8,11,10,12};
+        // Integer[] data = new Integer[]{7,4,9,2,1,8};
         for (Integer in : data) {
             intTree.add(in);
         }
@@ -402,14 +431,14 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         Node<Integer> successor = intTree.successor(intTree.root.right.left);
         System.out.println("节点的后继节点是：" + successor.element);
 
+        // intTree.remove(7);
+
         intTree.rankOrderTree(new Visitor<Integer>() {
             @Override
             public boolean visit(Integer element) {
                 System.out.print(element + " ");
-                if (element == 1) {
-                    return true;
-                }
-                return false;
+                // 返回true则被打断
+                return element == 1;
             }
         });
         System.out.println();
