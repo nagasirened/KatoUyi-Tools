@@ -188,7 +188,7 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
 
     @Override
     public boolean contains(E element) {
-        return false;
+        return node(element) != null;
     }
 
     /**
