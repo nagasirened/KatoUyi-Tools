@@ -1,4 +1,4 @@
-package com.katouyi.tools.ipTable.ipdata;
+package com.katouyi.tools.ipdata;
 
 import cn.hutool.core.io.IoUtil;
 import com.ky.common.lang.StringUtils;
