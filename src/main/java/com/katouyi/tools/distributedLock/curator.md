@@ -45,6 +45,13 @@ zkClient.start();
 // 注意:下面的代码会报错，下文说了具体原因
 zkClient.create().forPath("/node1/00001");
 zkClient.create().withMode(CreateMode.PERSISTENT).forPath("/node1/00002");
+
+/**
+        PERSISTENT 持久节点
+        PERSISTENT_SEQUENTIAL 持久顺序节点
+        EPHEMERAL 临时节点
+        EPHEMERAL_SEQUENTIAL 临时顺序节点    
+*/
 ```
 但是，你运行上面的代码会报错，这是因为的父节点node1还未创建。
 
