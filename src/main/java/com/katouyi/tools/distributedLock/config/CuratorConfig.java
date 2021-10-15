@@ -21,7 +21,6 @@ public class CuratorConfig {
     public CuratorFramework curatorFramework() {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         CuratorFramework client = CuratorFrameworkFactory.newClient("101.132.123.185:2181", retryPolicy);
-
         return client;
     }
 }
