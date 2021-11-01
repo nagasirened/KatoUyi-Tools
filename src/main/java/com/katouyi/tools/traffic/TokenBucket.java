@@ -3,9 +3,9 @@ package com.katouyi.tools.traffic;
 /**
  * 原理：匀速补水，每次漏水前补水，再看桶里有没有足够的水可以用
  *
- * 流量控制漏桶算法
+ * 令牌桶
  */
-public class Funnel {
+public class TokenBucket {
 
     /**
      * 1s  1000ms
@@ -20,9 +20,9 @@ public class Funnel {
      * 构造函数
      *
      * @param capacity 容量
-     * @param rate 每秒漏水数量
+     * @param rate 每秒放入令牌数量
      */
-    public Funnel(int capacity, int rate) {
+    public TokenBucket(int capacity, int rate) {
         this.capacity = capacity;
         this.leakingTs = System.nanoTime();
         this.rate = rate;
@@ -47,9 +47,9 @@ public class Funnel {
     }
 
     /**
-     * 漏水。桶里水量不够就返回false
+     * 获取令牌
      * @param quota 漏水量
-     * @return 是否漏水成功
+     * @return 是否获取令牌成功
      */
     public boolean tryWatering(int quota) {
         makeSpace();
@@ -62,7 +62,7 @@ public class Funnel {
     }
 
     /**
-     * 漏水。没水就阻塞直到蓄满足够的水
+     * 获取令牌  阻塞等待
      * @param quota 要漏的数量
      */
     public void watering(int quota) {
