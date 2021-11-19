@@ -23,7 +23,7 @@ public interface RegistryClient {
         if (null == serviceInfo || StringUtils.isEmpty(serviceInfo.getServiceName())) {
             throw new NullPointerException("service information or service name can`t be null");
         }
-        return doGetServices(serviceInfo);
+        return doGetServices(serviceInfo, false);
     }
 
     /**
@@ -32,7 +32,7 @@ public interface RegistryClient {
      * @param serviceInfo
      * @return
      */
-    List<ServiceInstance> doGetServices(ServiceInfo serviceInfo) throws Exception ;
+    List<ServiceInstance> doGetServices(ServiceInfo serviceInfo, final boolean asyncMark);
 
     /**
      * 销毁

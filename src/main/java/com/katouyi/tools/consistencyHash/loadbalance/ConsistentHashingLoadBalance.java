@@ -47,7 +47,7 @@ public class ConsistentHashingLoadBalance extends AbstractLoadBalance {
         /**
          * 物理节点至虚拟节点的复制倍数
          */
-        private final int VIRTUAL_COPIES = 160;
+        private final int VIRTUAL_COPIES = 1024 * 16;
 
         public ConsistentHashSelector(List<ServiceInstance> virtualInstances, int identityHashCode) {
             this.identityHashCode = identityHashCode;

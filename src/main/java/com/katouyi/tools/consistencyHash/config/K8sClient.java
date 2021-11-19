@@ -21,11 +21,14 @@ import javax.annotation.PreDestroy;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 @Component
 public class K8sClient implements RegistryClient {
 
     private final Logger logger = LoggerFactory.getLogger(K8sClient.class);
+    public static final String SERVICE_NAME = "ky-algorithm-recommend-api";
+    public static final String NAMESPACE = "ky-recommend";
 
     /**
      * 初始化标志
@@ -75,6 +78,7 @@ public class K8sClient implements RegistryClient {
             client = new DefaultKubernetesClient(config);
             logger.info("K8sClient#init, load KubernetesClient success");
         }
+        doGetServices(new K8sServiceInfo(NAMESPACE, SERVICE_NAME), false);
     }
 
     /**
@@ -84,7 +88,7 @@ public class K8sClient implements RegistryClient {
      * @return              服务列表
      */
     @Override
-    public List<ServiceInstance> doGetServices(ServiceInfo serviceInfo) {
+    public List<ServiceInstance> doGetServices(ServiceInfo serviceInfo, final boolean asyncMark) {
         if (Objects.isNull(client)) {
             return new ArrayList<>();
         }
@@ -99,7 +103,11 @@ public class K8sClient implements RegistryClient {
         String nameServiceName = packageServiceName(k8sServiceInfo);
         //如果不存在Watch，初始化服务，以服务纬度加锁
         if (!serviceWatchMap.containsKey(nameServiceName) || Objects.isNull(serviceWatchMap.get(nameServiceName))) {
-            initService(nameServiceName, k8sServiceInfo);
+            if (!asyncMark) {
+                initService(nameServiceName, k8sServiceInfo, asyncMark);
+            } else {
+                new Thread(() -> initService(nameServiceName, k8sServiceInfo, asyncMark)).start();
+            }
         }
 
         //获取服务列表，申请读锁
@@ -118,7 +126,11 @@ public class K8sClient implements RegistryClient {
     /**
      * 初始化服务
      */
-    public void initService(String nameServiceName, K8sServiceInfo k8sServiceInfo) {
+    public void initService(String nameServiceName, K8sServiceInfo k8sServiceInfo, boolean asyncMark) {
+        // 在此判断，防止重复加载
+        if (serviceWatchMap.containsKey(nameServiceName) && Objects.nonNull(serviceWatchMap.get(nameServiceName))) {
+            return;
+        }
         Resource<Endpoints> resource;
         try {
             //链接指定的Namespace的Service
@@ -128,19 +140,17 @@ public class K8sClient implements RegistryClient {
             return;
         }
 
-
         if (null == resource || null == resource.get()) {
             logger.error("K8sClient#initService, service resource not found, namespace: {}, serviceName: {}", k8sServiceInfo.getNamespace(), k8sServiceInfo.getServiceName());
             return;
         }
 
         //如果监听为空，添加监听
-        if (null == serviceWatchMap.get(nameServiceName)) {
-            //创建监听
-            serviceWatchMap.putIfAbsent(nameServiceName, resource.watch(new Watcher<Endpoints>() {
+        if (Objects.isNull(serviceWatchMap.get(nameServiceName))) {
+            serviceWatchMap.put(nameServiceName, resource.watch(new Watcher<Endpoints>() {
                 @Override
                 public void eventReceived(Action action, Endpoints endpoints) {
-                    logger.info("K8sClient#initService, service list has changed. k8sInfo: {}, actionName: {}, endpoints: {}", JSON.toJSONString(k8sServiceInfo), action.name(), endpoints);
+                    logger.info("K8sClient#initService, service list has changed. k8sInfo: {}, actionName: {}, endpoints: {}, asyncMark: {}", JSON.toJSONString(k8sServiceInfo), action.name(), endpoints, asyncMark);
                     switch (action) {
                         case ADDED:
                         case DELETED:
@@ -153,12 +163,20 @@ public class K8sClient implements RegistryClient {
                             logger.error("K8sClient#initService, without this type of change. k8sInfo: {}, actionName: {}, endpoints: {}", JSON.toJSONString(k8sServiceInfo), action.name(), endpoints);
                             break;
                     }
-
                 }
 
+                /**
+                 * 异常关闭，重新注册一下监听器
+                 */
                 @Override
                 public void onClose(WatcherException e) {
-                    logger.warn("k8s registry client is close!", e);
+                    logger.error("k8s registry client is close! we will Re-register the listener", e);
+                    Watch watch = serviceWatchMap.get(nameServiceName);
+                    if (Objects.nonNull(watch)) {
+                        watch.close();
+                    }
+                    serviceWatchMap.clear();
+                    doGetServices(k8sServiceInfo, true);
                 }
             }));
         } else {
@@ -183,9 +201,10 @@ public class K8sClient implements RegistryClient {
             for (EndpointSubset subset : endpoints.getSubsets()) {
                 serviceInstances.addAll(packServiceInstance(subset, namespace, name));
             }
-            logger.info("service[{}] instance modify, instances:{}", serviceName, JSON.toJSONString(serviceInstances));
+            logger.info("K8sClient#modifyServiceInstance, useful serviceInstance list size: {}, subsetSize: {}, serviceName: {}, detail: {}",
+                    serviceInstances.size(), endpoints.getSubsets().size(), serviceName, JSON.toJSONString(serviceInstances));
         } else {
-            logger.info("service[{}] instance modify, empty!", serviceName);
+            logger.info("K8sClient#modifyServiceInstance, serviceName {} instance modify, empty!", serviceName);
         }
         serviceMap.put(serviceName, serviceInstances);
         return Collections.unmodifiableList(serviceInstances);
@@ -199,11 +218,14 @@ public class K8sClient implements RegistryClient {
         //目前仅支持单一port，多个IP
         if (subset.getPorts().size() == 1) {
             EndpointPort port = subset.getPorts().get(0);
+            List<EndpointAddress> notReadyAddresses = subset.getNotReadyAddresses();
+            Set<String> notReadyIpSet = notReadyAddresses.stream().map(EndpointAddress::getIp).collect(Collectors.toSet());
             for (EndpointAddress address : subset.getAddresses()) {
-                instances.add(new K8sServiceInstance(namespace, serviceName, address.getIp(), port.getPort()));
+                if (!notReadyIpSet.contains(address.getIp())) {
+                    instances.add(new K8sServiceInstance(namespace, serviceName, address.getIp(), port.getPort()));
+                }
             }
         }
-
         return instances;
     }
 
@@ -214,6 +236,8 @@ public class K8sClient implements RegistryClient {
     @PreDestroy
     public void destroy() {
         if (null != client && destroy.compareAndSet(false, true)) {
+            serviceWatchMap.clear();
+            serviceMap.clear();
             client.close();
         }
     }
