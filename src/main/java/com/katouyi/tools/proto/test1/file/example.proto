@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_outer_classname = "BatteryData";  // 不用默认驼峰的，可以自定义Java文件名称
+option java_package = "com.katouyi.tools.proto.test1.java";    // 包的名字
+
+
+message gps_data {      // 默认生成的是GpsData 这个驼峰格式的名称
+    int64 id = 1;
+    string terminalId = 2;
+    string dataTime = 3;
+    double lon = 4;
+    double lat = 5;
+    float speed = 6;
+    int32 altitude = 7;
+    int32 locType = 8;
+    int32 gpsStatus = 9;
+    float direction = 10;
+    int32 satellite = 11;
+}
+
+
+// TODO    protoc --java_out=. *.proto
