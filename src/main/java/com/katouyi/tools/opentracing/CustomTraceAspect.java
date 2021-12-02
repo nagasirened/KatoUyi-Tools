@@ -42,27 +42,19 @@ public class CustomTraceAspect {
     public void servicePointcut() {
     }
 
-    @Pointcut("bean(doveConfigEngine)")
-    public void doveConfigEnginePointcut() {
+    @Pointcut("bean(basedConfigurer)")
+    public void basedConfigurer() {
     }
 
-    @Pointcut("bean(kyAdvApiWebMvcConfigurer)")
-    public void kyAdvApiWebMvcConfigurerPointcut() {
-    }
-
-    @Pointcut("(servicePointcut())&&!doveConfigEnginePointcut()&&!kyAdvApiWebMvcConfigurerPointcut()")
+    @Pointcut("(servicePointcut())&&!basedConfigurer()")
     public void jaegerPoint() {
     }
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private final String[] whiteClassArray = new String[]{
-            "com.ky.common.web.BasedInterceptor",
-            "com.ky.common.web.UserDefinedFilter",
-            "com.ky.common.web.UserDefinedExceptionResolver",
-            "com.ky.common.web.UserDefinedDispatcherServlet",
-            "com.ky.common.web.UserDefinedHttpServletRequestWrapper",
+            "com.test.XXXFilter",
     };
-    private final String[] whitePackageNameArray = new String[]{"com.ky.common.web", "com.ky.springboot.starter"};
+    private final String[] whitePackageNameArray = new String[]{"com.test.boot.utils"};
 
     /**
      * <p>是否打印详细日志</p>
@@ -104,7 +96,7 @@ public class CustomTraceAspect {
             tracer.activeSpan().log("response:" + result);
         } catch (Throwable t) {
             if (!(t instanceof ServiceException)) {
-                logger.error("targetName:{},method:{},param:{},result:{},error message:{}", targetName, methodName, args, result, t.getMessage(), t);
+                logger.error("targetName:{}, method:{}, param:{}, result:{}", targetName, methodName, args, result, t);
             }
             Map<String, Object> exceptionLogs = new LinkedHashMap<>(10);
             exceptionLogs.put("event", Tags.ERROR.getKey());
@@ -136,7 +128,7 @@ public class CustomTraceAspect {
     }
 
     private boolean isUserDefinedFilter(String methodName, String targetName) {
-        return StringUtils.equalsIgnoreCase(methodName, "doFilter") && StringUtils.equalsIgnoreCase(targetName, "com.ky.common.web.UserDefinedFilter");
+        return StringUtils.equalsIgnoreCase(methodName, "doFilter") && StringUtils.equalsIgnoreCase(targetName, "com.test.boot.utils.AbUtils");
     }
 
     private void makeUrl(String methodName, String targetName, ProceedingJoinPoint proceedingJoinPoint) {
@@ -148,6 +140,7 @@ public class CustomTraceAspect {
             String url = request.getRequestURL().toString();
             tracer.activeSpan().log("url:" + url);
         } catch (Exception e) {
+            logger.error("fail", e);
         }
     }
 }
