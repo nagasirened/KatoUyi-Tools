@@ -311,6 +311,13 @@
             <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
             <version>3.3.1</version>
         </dependency>
+
+        <!-- thrift -->
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.15.0</version>
+        </dependency>
     </dependencies>
 
 
