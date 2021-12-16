@@ -19,20 +19,7 @@ public interface RegistryClient {
      * @param serviceInfo
      * @return
      */
-    default List<ServiceInstance> getServices(ServiceInfo serviceInfo) throws Exception  {
-        if (null == serviceInfo || StringUtils.isEmpty(serviceInfo.getServiceName())) {
-            throw new NullPointerException("service information or service name can`t be null");
-        }
-        return doGetServices(serviceInfo, false);
-    }
-
-    /**
-     * 根据服务名称获取服务实例信息
-     *
-     * @param serviceInfo
-     * @return
-     */
-    List<ServiceInstance> doGetServices(ServiceInfo serviceInfo, final boolean asyncMark);
+    void loadServices(ServiceInfo serviceInfo, final boolean asyncMark);
 
     /**
      * 销毁

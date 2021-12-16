@@ -2,34 +2,72 @@ package com.katouyi.tools.consistencyHash.loadbalance;
 
 import com.katouyi.tools.consistencyHash.entity.LoadBalanceRequest;
 import com.katouyi.tools.consistencyHash.entity.ServiceInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @description: 一致性哈希负载均衡器
  */
 @Component
 public class ConsistentHashingLoadBalance extends AbstractLoadBalance {
+    Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 一致性hash选择器的集合，以服务为纬度
      */
     private final ConcurrentMap<String, ConsistentHashSelector> selectors = new ConcurrentHashMap<>();
 
+    private Lock readLock;
+    private Lock writeLock;
+
+    @PostConstruct
+    public void initLock() {
+        final ReadWriteLock rwLock = new ReentrantReadWriteLock();
+        this.readLock = rwLock.readLock();
+        this.writeLock = rwLock.writeLock();
+    }
+
     @Override
-    ServiceInstance doSelect(LoadBalanceRequest request, List<ServiceInstance> serviceInstanceList) {
-        int invokersHashCode = serviceInstanceList.hashCode();
-        ConsistentHashSelector selector = selectors.get(request.getServiceName());
-        if (selector == null || selector.identityHashCode != invokersHashCode) {
-            selectors.put(request.getServiceName(), new ConsistentHashSelector(serviceInstanceList, invokersHashCode));
-            selector = selectors.get(request.getServiceName());
+    ServiceInstance doSelect(LoadBalanceRequest request) {
+        readLock.lock();
+        try {
+            ConsistentHashSelector selector = selectors.get(request.getServiceName());
+            if (Objects.isNull(selector)) {
+                return null;
+            }
+            return selector.select(request);
+        } finally {
+            readLock.unlock();
         }
-        ServiceInstance select = selector.select(request);
-        return select;
+    }
+
+    @Override
+    public void updateVirtualPoints(String serviceName, List<ServiceInstance> delList, List<ServiceInstance> addList) {
+        writeLock.lock();
+        try {
+            long startTime = System.currentTimeMillis();
+            ConsistentHashSelector selector = selectors.get(serviceName);
+            if (Objects.isNull(selector)) {
+                selectors.put(serviceName, new ConsistentHashSelector(addList));
+            } else {
+                selector.updateVirtualPoints(delList, addList);
+            }
+            logger.info("LoadBalance#updateVirtualPoints, update virtual points success, addListSize: {}, delListSize: {}, serviceName: {}, timeCost: {}",
+                    addList.size(), delList.size(), serviceName, (System.currentTimeMillis() - startTime));
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     private static class ConsistentHashSelector {
@@ -40,18 +78,11 @@ public class ConsistentHashingLoadBalance extends AbstractLoadBalance {
         private final TreeMap<Long, ServiceInstance> virtualInstances;
 
         /**
-         * 服务列表HashCode
-         */
-        private final int identityHashCode;
-
-        /**
          * 物理节点至虚拟节点的复制倍数
          */
-        private final int VIRTUAL_COPIES = 1024 * 16;
+        private final int VIRTUAL_COPIES = 16384;
 
-        public ConsistentHashSelector(List<ServiceInstance> virtualInstances, int identityHashCode) {
-            this.identityHashCode = identityHashCode;
-
+        public ConsistentHashSelector(List<ServiceInstance> virtualInstances) {
             //添加物理节点
             TreeMap<Long, ServiceInstance> treeMap = new TreeMap<>();
             for (ServiceInstance virtualInstance : virtualInstances) {
@@ -64,10 +95,7 @@ public class ConsistentHashingLoadBalance extends AbstractLoadBalance {
         }
 
         /**
-         * 负载均衡
-         *
-         * @param request
-         * @return
+         * 负载均衡，选择可用节点
          */
         public ServiceInstance select(LoadBalanceRequest request) {
             long hash = hash(request.getKey());
@@ -75,6 +103,24 @@ public class ConsistentHashingLoadBalance extends AbstractLoadBalance {
             SortedMap<Long, ServiceInstance> tailMap = virtualInstances.tailMap(hash);
             Long key = tailMap.isEmpty() ? virtualInstances.firstKey() : tailMap.firstKey();
             return virtualInstances.get(key);
+        }
+
+        /**
+         * 动态更新虚拟节点
+         */
+        public void updateVirtualPoints(List<ServiceInstance> delList, List<ServiceInstance> addList) {
+            delList.forEach(item -> {
+                String host = item.getHost();
+                for (int i = 0; i < VIRTUAL_COPIES; i++) {
+                    this.virtualInstances.remove(hash(host + "#" + i));
+                }
+            });
+            addList.forEach(item -> {
+                String host = item.getHost();
+                for (int i = 0; i < VIRTUAL_COPIES; i++) {
+                    this.virtualInstances.put(hash(host + "#" + i), item);
+                }
+            });
         }
 
         /**

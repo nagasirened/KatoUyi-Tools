@@ -5,6 +5,7 @@ import com.katouyi.tools.consistencyHash.entity.K8sServiceInfo;
 import com.katouyi.tools.consistencyHash.entity.K8sServiceInstance;
 import com.katouyi.tools.consistencyHash.entity.ServiceInfo;
 import com.katouyi.tools.consistencyHash.entity.ServiceInstance;
+import com.katouyi.tools.consistencyHash.loadbalance.LoadBalance;
 import io.fabric8.kubernetes.api.model.*;
 import io.fabric8.kubernetes.client.*;
 import io.fabric8.kubernetes.client.Config;
@@ -27,8 +28,8 @@ import java.util.stream.Collectors;
 public class K8sClient implements RegistryClient {
 
     private final Logger logger = LoggerFactory.getLogger(K8sClient.class);
-    public static final String SERVICE_NAME = "ky-algorithm-recommend-api";
-    public static final String NAMESPACE = "ky-recommend";
+    public static final String SERVICE_NAME = "service-name-***";
+    public static final String NAMESPACE = "namespace***";
 
     /**
      * 初始化标志
@@ -60,6 +61,9 @@ public class K8sClient implements RegistryClient {
         return "https://xxx.xxx.xxx.xxx:6443";
     }
 
+    @javax.annotation.Resource(name = "consistentHashingLoadBalance")
+    private LoadBalance loadBalance;
+
     /**
      * 初始化客户端
      */
@@ -78,7 +82,7 @@ public class K8sClient implements RegistryClient {
             client = new DefaultKubernetesClient(config);
             logger.info("K8sClient#init, load KubernetesClient success");
         }
-        doGetServices(new K8sServiceInfo(NAMESPACE, SERVICE_NAME), false);
+        loadServices(new K8sServiceInfo(NAMESPACE, SERVICE_NAME), false);
     }
 
     /**
@@ -88,15 +92,15 @@ public class K8sClient implements RegistryClient {
      * @return              服务列表
      */
     @Override
-    public List<ServiceInstance> doGetServices(ServiceInfo serviceInfo, final boolean asyncMark) {
+    public void loadServices(ServiceInfo serviceInfo, final boolean asyncMark) {
         if (Objects.isNull(client)) {
-            return new ArrayList<>();
+            return;
         }
 
         K8sServiceInfo k8sServiceInfo = (K8sServiceInfo) serviceInfo;
         if (StringUtils.isEmpty(k8sServiceInfo.getNamespace())) {
             logger.error("K8sClient, k8sServiceInfo namespace is null, please check.");
-            return new ArrayList<>();
+            return;
         }
 
         //服务请求名称
@@ -109,10 +113,6 @@ public class K8sClient implements RegistryClient {
                 new Thread(() -> initService(nameServiceName, k8sServiceInfo, asyncMark)).start();
             }
         }
-
-        //获取服务列表，申请读锁
-        List<ServiceInstance> serviceInstances = serviceMap.get(nameServiceName);
-        return (null != serviceInstances) ? Collections.unmodifiableList(serviceInstances) : null;
     }
 
     /**
@@ -140,8 +140,13 @@ public class K8sClient implements RegistryClient {
             return;
         }
 
-        if (null == resource || null == resource.get()) {
-            logger.error("K8sClient#initService, service resource not found, namespace: {}, serviceName: {}", k8sServiceInfo.getNamespace(), k8sServiceInfo.getServiceName());
+        try {
+            if (null == resource || null == resource.get()) {
+                logger.error("K8sClient#initService, service resource not found, namespace: {}, serviceName: {}", k8sServiceInfo.getNamespace(), k8sServiceInfo.getServiceName());
+                return;
+            }
+        } catch (Exception e) {
+            logger.info("K8sClient#initService, resource.get() error!");
             return;
         }
 
@@ -157,7 +162,7 @@ public class K8sClient implements RegistryClient {
                         case ERROR:
                             break;
                         case MODIFIED:
-                            modifyServiceInstance(nameServiceName, endpoints);
+                            modifyServiceInstance(nameServiceName, k8sServiceInfo.getServiceName(), endpoints);
                             break;
                         default:
                             logger.error("K8sClient#initService, without this type of change. k8sInfo: {}, actionName: {}, endpoints: {}", JSON.toJSONString(k8sServiceInfo), action.name(), endpoints);
@@ -176,21 +181,25 @@ public class K8sClient implements RegistryClient {
                         watch.close();
                     }
                     serviceWatchMap.clear();
-                    doGetServices(k8sServiceInfo, true);
+                    loadServices(k8sServiceInfo, true);
                 }
             }));
         } else {
             logger.info("service[{}] watch is exist, don`t need add watch", nameServiceName);
         }
         //更新服务列表缓存
-        modifyServiceInstance(nameServiceName, resource.get());
+        modifyServiceInstance(nameServiceName, k8sServiceInfo.getServiceName(), resource.get());
     }
 
     /**
      * 更新服务列表缓存
+     *
+     * @param serviceName
+     * @param endpoints
+     * @return
      */
-    private List<ServiceInstance> modifyServiceInstance(String serviceName, Endpoints endpoints) {
-        //获取写锁
+    private void modifyServiceInstance(String nameServiceName, String serviceName, Endpoints endpoints) {
+        long startTime = System.currentTimeMillis();
         List<ServiceInstance> serviceInstances = new ArrayList<>();
         if (!CollectionUtils.isEmpty(endpoints.getSubsets())) {
             //命名空间和服务名称
@@ -201,17 +210,43 @@ public class K8sClient implements RegistryClient {
             for (EndpointSubset subset : endpoints.getSubsets()) {
                 serviceInstances.addAll(packServiceInstance(subset, namespace, name));
             }
-            logger.info("K8sClient#modifyServiceInstance, useful serviceInstance list size: {}, subsetSize: {}, serviceName: {}, detail: {}",
-                    serviceInstances.size(), endpoints.getSubsets().size(), serviceName, JSON.toJSONString(serviceInstances));
         } else {
-            logger.info("K8sClient#modifyServiceInstance, serviceName {} instance modify, empty!", serviceName);
+            logger.info("K8sClient#modifyServiceInstance, serviceName {} instance modify, empty!", nameServiceName);
         }
-        serviceMap.put(serviceName, serviceInstances);
-        return Collections.unmodifiableList(serviceInstances);
+        // 增量替换
+        List<ServiceInstance> delList = new ArrayList<>();
+        List<ServiceInstance> addList = new ArrayList<>();
+        dealUpdatedServiceInstance(delList, addList, nameServiceName, serviceInstances);
+        if (!CollectionUtils.isEmpty(delList) || !CollectionUtils.isEmpty(addList)) {
+            loadBalance.updateVirtualPoints(serviceName, delList, addList);
+        }
+        logger.info("K8sClient#modifyServiceInstance and updateVirtualPoints useful serviceInstance list size: {}, subsetSize: {}, serviceName: {}, timeCost: {}, detail: {}",
+                serviceInstances.size(), endpoints.getSubsets().size(), nameServiceName, (System.currentTimeMillis() - startTime), JSON.toJSONString(serviceInstances));
+        serviceMap.put(nameServiceName, serviceInstances);
+    }
+
+    /**
+     * 节点差集
+     */
+    public void dealUpdatedServiceInstance(List<ServiceInstance> delList, List<ServiceInstance> addList, String nameServiceName, List<ServiceInstance> realTimeServiceInstance) {
+        List<ServiceInstance> oldServiceInstances = serviceMap.get(nameServiceName);
+        if (CollectionUtils.isEmpty(oldServiceInstances)) {
+            addList.addAll(realTimeServiceInstance);
+            return;
+        }
+        Set<String> oldHostPortSet = oldServiceInstances.stream().map(item -> item.getHost() + ":" + item.getPort()).collect(Collectors.toSet());
+        addList.addAll(realTimeServiceInstance.stream().filter(item -> !oldHostPortSet.contains(item.getHost() + ":" + item.getPort())).collect(Collectors.toList()));
+
+        Set<String> realTimeHostPortSet = realTimeServiceInstance.stream().map(item -> item.getHost() + ":" + item.getPort()).collect(Collectors.toSet());
+        delList.addAll(oldServiceInstances.stream().filter(item -> !realTimeHostPortSet.contains(item.getHost() + ":" + item.getPort())).collect(Collectors.toList()));
     }
 
     /**
      * 包装服务实例信息
+     *
+     * @param subset
+     * @param serviceName
+     * @return
      */
     public List<ServiceInstance> packServiceInstance(EndpointSubset subset, String namespace, String serviceName) {
         List<ServiceInstance> instances = new ArrayList<>();

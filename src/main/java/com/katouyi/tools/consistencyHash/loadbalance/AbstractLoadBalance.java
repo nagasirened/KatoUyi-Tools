@@ -12,19 +12,14 @@ import java.util.List;
  */
 public abstract class AbstractLoadBalance implements LoadBalance {
 
-    abstract ServiceInstance doSelect(LoadBalanceRequest request, List<ServiceInstance> serviceInstanceList);
-
     @Override
-    public ServiceInstance select(LoadBalanceRequest request, List<ServiceInstance> serviceInstanceList) {
-        if (null == request || StringUtils.isAnyBlank(request.getKey(), request.getServiceName())
-                || CollectionUtils.isEmpty(serviceInstanceList)) {
+    public ServiceInstance select(LoadBalanceRequest request) {
+        if (null == request || StringUtils.isAnyBlank(request.getKey(), request.getServiceName())) {
             return null;
         }
 
-        if (serviceInstanceList.size() == 1) {
-            return serviceInstanceList.get(0);
-        }
-
-        return doSelect(request, serviceInstanceList);
+        return doSelect(request);
     }
+
+    abstract ServiceInstance doSelect(LoadBalanceRequest request);
 }
