@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_outer_classname = "ProtoTestService";
+option java_package = "com.katouyi.tools.rpc.proto.test2.java";
+
+service TestService {
+  rpc HowRpcDefine (Request) returns (Response);
+}
+
+message Request {
+  // repeated 数组   reserved 保留字段
+  int64 user_id = 1;
+  string user_name = 2;
+}
+
+message Response {
+  repeated int64 ids = 1;
+  Value info = 2;
+  map<int32, Value> values = 3;
+}
+
+message Value {
+  bool is_man = 1;
+  int32 age = 2;
+}
+
