@@ -2,7 +2,6 @@ package com.katouyi.tools.elasticSearch.config;
 
 import com.alibaba.fastjson.JSON;
 import com.katouyi.tools.elasticSearch2.DocumentEntity;
-import com.katouyi.tools.elasticSearch2.DocumentServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ import java.util.function.BiConsumer;
  * context : 默认
  */
 @Slf4j
-public class DefaultHignLevelDocumentHandler<T, ID> implements HignLevelDocumentHandler<T, ID> {
+public class DefaultHignLevelDocumentHandler<T, ID> implements ESDocumentHandler<T, ID> {
 
     @Autowired
     @Qualifier("restHighLevelClient")
@@ -57,11 +56,15 @@ public class DefaultHignLevelDocumentHandler<T, ID> implements HignLevelDocument
         this.indexName = indexName;
     }
 
+    /**
+     * 批量刷盘
+     */
     @PostConstruct
     public void init(){
         BiConsumer<BulkRequest, ActionListener<BulkResponse>> bulkConsumer = (request, listener) -> {
             client.bulkAsync(request, RequestOptions.DEFAULT, listener);
         };
+
         this.bulkProcessor = BulkProcessor.builder(bulkConsumer, new BulkProcessor.Listener() {
             public void beforeBulk(long executionId, BulkRequest request) {
                 log.debug("elasticsearch service,document service,batch save start,data size:{}", request.numberOfActions());
@@ -74,10 +77,10 @@ public class DefaultHignLevelDocumentHandler<T, ID> implements HignLevelDocument
             public void afterBulk(long executionId, BulkRequest request, Throwable failure) {
                 log.error("elasticsearch service,document service,batch save fail,error message:{},data:{}", new Object[]{failure.getMessage(), JSON.toJSONString(request.requests()), failure});
             }
-        }).setBulkActions(1000)         // 数量达到1000
+        }).setBulkActions(1000)                                          // 数量达到1000
         .setBulkSize(new ByteSizeValue(5L, ByteSizeUnit.MB))        // 达到5M
         .setFlushInterval(TimeValue.timeValueSeconds(5L))                // 达到5s
-        .setConcurrentRequests(2)                                        // 请求数量达到2
+        .setConcurrentRequests(5)                                        // 请求数量达到5
         .setBackoffPolicy(BackoffPolicy.constantBackoff(TimeValue.timeValueSeconds(1L), 3))  //重试策略
         .build();
 
@@ -97,18 +100,17 @@ public class DefaultHignLevelDocumentHandler<T, ID> implements HignLevelDocument
         jsonSave(t, id, TimeValue.timeValueSeconds(1));
     }
 
-    public void saveAll(List<DocumentEntity> datas){
+    public void saveAll(List<DocumentEntity> data){
         try {
-            datas.forEach(item -> {
-                DocumentEntity entity = (DocumentEntity) item;
+            data.forEach(item -> {
                 IndexRequest request = new IndexRequest(indexName);
-                request.id(entity.getId());
-                request.source(entity);
+                request.id(item.getId());
+                request.source(item);
                 this.bulkProcessor.add(request);
             });
-            log.debug("elasticsearch service,document service,batch save successful,indexName:{},data size:{}", indexName, datas.size());
+            log.debug("elasticsearch service,document service,batch save successful,indexName: {},data size: {}", indexName, data.size());
         } catch (Exception var6) {
-            log.error("elasticsearch service,document service,batch save fail,indexName:{},data:{},error message:{}", new Object[]{indexName, JSON.toJSONString(datas), var6.getMessage(), var6});
+            log.error("elasticsearch service,document service,batch save fail,indexName: {}, data: {}, error message: {}", indexName, var6.getMessage(), var6);
         }
     }
 

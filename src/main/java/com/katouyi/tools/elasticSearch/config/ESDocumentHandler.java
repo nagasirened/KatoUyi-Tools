@@ -15,7 +15,7 @@ import java.util.List;
  * context : 操作文档的接口
  */
 
-public interface HignLevelDocumentHandler<T, ID> {
+public interface ESDocumentHandler<T, ID> {
 
     public void save(T t) throws Exception;
 

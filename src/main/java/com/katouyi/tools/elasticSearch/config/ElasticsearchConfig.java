@@ -3,6 +3,7 @@ package com.katouyi.tools.elasticSearch.config;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpHost;
+import org.elasticsearch.client.Node;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -21,20 +22,17 @@ public class ElasticsearchConfig {
 
     @Bean
     public RestHighLevelClient restHighLevelClient(){
-        RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
+        return new RestHighLevelClient(
                 RestClient.builder(
                         new HttpHost("localhost", 9200, "http")
                         // 如果是集群，可以构建多个
                         /*,new HttpHost("localhost", 9201, "http")*/
                 )
         );
-
-        return restHighLevelClient;
     }
 
     /**
      * 注意，这里的 Object 建议改成对应的
-     * @return
      */
     @Bean(name = "nagaClient")
     @ConditionalOnMissingBean(name = "nagaClient")

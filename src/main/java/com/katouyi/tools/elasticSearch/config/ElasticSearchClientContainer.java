@@ -18,7 +18,7 @@ public class ElasticSearchClientContainer {
     @Autowired
     private Map<String, DefaultHignLevelDocumentHandler> containers;
 
-    public DefaultHignLevelDocumentHandler general(String indexName){
+    public DefaultHignLevelDocumentHandler getEsHandler(String indexName){
         DefaultHignLevelDocumentHandler handler = containers.get(indexName + "Handler");
         if (Objects.isNull(handler)) {
             throw new RuntimeException("没有对应的es-handler");
