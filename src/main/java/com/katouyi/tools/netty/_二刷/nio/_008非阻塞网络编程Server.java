@@ -14,6 +14,9 @@ import java.util.ArrayList;
  *
  * 可以通过SocketChannel的configureBlocking(false)方法将从通道中读取数据设置为非阻塞的。
  * 若此时通道中没有数据可读，read会返回-1
+ *
+ *
+ * 缺点：线程一直处于循环处理的状态，CPU占用
  */
 public class _008非阻塞网络编程Server {
 
