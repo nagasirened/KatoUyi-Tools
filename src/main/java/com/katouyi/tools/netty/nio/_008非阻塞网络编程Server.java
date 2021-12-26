@@ -1,7 +1,5 @@
 package com.katouyi.tools.netty.nio;
 
-import com.katouyi.tools.netty.nioDemo.ByteBufferUtil;
-
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;

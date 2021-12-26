@@ -1,7 +1,5 @@
 package com.katouyi.tools.netty.nio;
 
-import com.katouyi.tools.netty.nioDemo.ByteBufferUtil;
-
 import java.nio.ByteBuffer;
 
 public class _002ByteBuffer函数练习 {
