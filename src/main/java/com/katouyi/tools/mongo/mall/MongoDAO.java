@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface MongoDAO<T> {
@@ -12,6 +13,11 @@ public interface MongoDAO<T> {
      * 保存单个对象
      */
     public T save(T t);
+
+    /**
+     * 批量保存
+     */
+    public Collection<T> save(Collection<T> t);
 
     /**
      * 根据主键删除
@@ -39,6 +45,11 @@ public interface MongoDAO<T> {
     public List<T> find(Query query);
 
     /**
+     * 查询指定返回哪些字段
+     */
+    public List<T> find(Query query, List<String> fields);
+
+    /**
      * 通过一定的条件查询一个实体
      */
     public T findOne(Query query);
@@ -54,7 +65,7 @@ public interface MongoDAO<T> {
     public T findById(String id);
 
     /**
-     * 通过ID获取记录,并且指定了集合名(表的意思)
+     * 通过ID获取记录, 并且指定了集合名(表的意思)
      */
     public T findById(String id, String collectionName);
 

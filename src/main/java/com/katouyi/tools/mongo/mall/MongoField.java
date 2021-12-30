@@ -19,4 +19,9 @@ public @interface MongoField {
      * 字段别名
      */
     String  param() default "";
+
+    /**
+     * 查询时，是否需要排除该字段
+     */
+    boolean exclude() default false;
 }

@@ -1,5 +1,6 @@
 package com.katouyi.tools.mongo.mall;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import com.mongodb.client.result.DeleteResult;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +28,11 @@ public abstract class MongoDAOSupport<T> implements MongoDAO<T> {
     public T save(T t) {
         mongoTemplate.save(t);
         return t;
+    }
+
+    @Override
+    public Collection<T> save(Collection<T> ts) {
+        return mongoTemplate.insertAll(ts);
     }
 
     @Override
@@ -58,6 +65,17 @@ public abstract class MongoDAOSupport<T> implements MongoDAO<T> {
     @Override
     public List<T> find(Query query) {
         return mongoTemplate.find(query, getActualClass());
+    }
+
+    @Override
+    public List<T> find(Query query, List<String> fields) {
+        org.springframework.data.mongodb.core.query.Field queryFields = query.fields();
+        if (CollectionUtil.isNotEmpty(fields)) {
+            fields.forEach(queryFields::include);
+            // queryFields.include(fields.get(0)); 包含字段
+            // queryFields.exclude("bala");        排除字段
+        }
+        return find(query);
     }
 
     @Override
@@ -111,6 +129,7 @@ public abstract class MongoDAOSupport<T> implements MongoDAO<T> {
      */
     private Query buildBaseQuery(T t) {
         Query query = new Query();
+        org.springframework.data.mongodb.core.query.Field queryFields = query.fields();
         Field[] fields = t.getClass().getDeclaredFields();
         try {
             for (Field field : fields) {
@@ -121,6 +140,9 @@ public abstract class MongoDAOSupport<T> implements MongoDAO<T> {
                 field.setAccessible(true);
                 MongoField mongoField = field.getAnnotation(MongoField.class);
                 if (Objects.nonNull(mongoField)) {
+                    if (mongoField.exclude()) {
+                        queryFields.exclude(field.getName());
+                    }
                     Criteria criteria = mongoField.type().buildCriteria(mongoField, field, value);
                     query.addCriteria(criteria);
                 }
