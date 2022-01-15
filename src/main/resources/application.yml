@@ -5,7 +5,6 @@ fdfs:
   so-timeout: 300       # 读取超时时间
   tracker-list: 101.132.123.185:22122
 
-
 spring:
   application:
     name: katouyi-tools
@@ -25,7 +24,8 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: error
+    io.netty.buffer.PoolThreadCache: INFO
 
 rocketmq:
   name-server: 127.0.0.1:9876
