@@ -6,9 +6,15 @@ import org.redisson.api.*;
 import org.redisson.api.listener.BasePatternStatusListener;
 import org.redisson.api.listener.MessageListener;
 import org.redisson.api.listener.PatternMessageListener;
+import org.redisson.api.redisnode.RedisCluster;
+import org.redisson.api.redisnode.RedisClusterMaster;
+import org.redisson.api.redisnode.RedisNodes;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
+import org.redisson.config.RedissonNodeConfig;
+import org.redisson.config.SingleServerConfig;
 import org.redisson.config.TransportMode;
+import org.redisson.connection.ConnectionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -105,7 +111,6 @@ public class RedissonConfig {
         // Lock
         RLock lock = client.getLock("lock");
         lock.tryLock(1, 2, TimeUnit.SECONDS);
-
 
         client.shutdown();
     }
