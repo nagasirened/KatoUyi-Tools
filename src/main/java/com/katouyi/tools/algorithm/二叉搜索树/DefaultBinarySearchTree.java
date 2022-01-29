@@ -433,20 +433,4 @@ public class DefaultBinarySearchTree<E> implements BinarySearchTree<E> {
         System.out.println("isComplete:" + intTree.isComplete());
     }
 
-    public static class Node<E> {
-        private E element;
-        private Node<E> parent;
-        private Node<E> left;
-        private Node<E> right;
-        // AVL树平衡二叉树计算高度简单一点，增加一个节点高度的字段
-        private int height;
-        // 构造节点的时候是有父节点的，因此传入parent
-        public Node(E element, Node<E> parent) {
-            this.element = element;
-            this.parent  = parent;
-        }
-    }
-
 }
-
-

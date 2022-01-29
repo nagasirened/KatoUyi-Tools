@@ -16,8 +16,12 @@ public class AVLTree<E> extends DefaultBinarySearchTree<E> {
         super(comparator);
     }
 
-    /**
-     * 重写添加和删除接口
-     */
+    // 添加Node之后，判断平衡，旋转
+    public void afterAdd(AVLNode node) {
+        while ((node = (AVLNode) node.parent) != null) {
+
+        }
+
+    }
 
 }
