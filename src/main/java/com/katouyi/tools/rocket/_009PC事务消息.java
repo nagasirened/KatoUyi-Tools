@@ -21,9 +21,12 @@ public class _009PC事务消息 {
             // 提交/回滚/UNKNOW
             @Override
             public LocalTransactionState executeLocalTransaction(Message msg, Object arg) {
-                if (StringUtils.equals("tagA", msg.getTags())) {
-                    return LocalTransactionState.COMMIT_MESSAGE;
-                } else if (StringUtils.equals("tagB", msg.getTags())) {
+                try {
+                    // doSth
+                    if (StringUtils.equals("1", "2")) {
+                        return LocalTransactionState.COMMIT_MESSAGE;
+                    }
+                } catch (Exception e) {
                     return LocalTransactionState.ROLLBACK_MESSAGE;
                 }
                 return LocalTransactionState.UNKNOW;
