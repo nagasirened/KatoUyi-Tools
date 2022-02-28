@@ -25,10 +25,12 @@ public class TokenRoutePredicateFactory extends AbstractRoutePredicateFactory<To
 
     public static final String TOKEN_KEY = "token";
 
-    public TokenRoutePredicateFactory(Class<Config> configClass) {
-        super(configClass);
+    // 注入Config.class
+    public TokenRoutePredicateFactory() {
+        super(TokenRoutePredicateFactory.Config.class);
     }
 
+    // 验证用的
     @Override
     public Predicate<ServerWebExchange> apply(Config config) {
         return new GatewayPredicate() {
