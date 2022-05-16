@@ -1,12 +1,12 @@
 package com.katouyi.tools.opentracing;
+/*
 
 import com.alibaba.fastjson.JSON;
-import com.ky.common.exception.ServiceException;
-import com.ky.common.lang.StringUtils;
 import io.opentracing.Scope;
 import io.opentracing.Span;
 import io.opentracing.Tracer;
 import io.opentracing.tag.Tags;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -56,9 +56,11 @@ public class CustomTraceAspect {
     };
     private final String[] whitePackageNameArray = new String[]{"com.test.boot.utils"};
 
-    /**
+    */
+/**
      * <p>是否打印详细日志</p>
-     */
+     *//*
+
     private boolean isWhite(Method method, String targetName) {
         if (method.isAnnotationPresent(RequestMapping.class)) {
             return true;
@@ -112,9 +114,11 @@ public class CustomTraceAspect {
         return object;
     }
 
-    /**
+    */
+/**
      * <p>跳过指定URL</p>
-     */
+     *//*
+
     protected boolean isTraced(String methodName, String targetName, ProceedingJoinPoint proceedingJoinPoint) {
         if (!isUserDefinedFilter(methodName, targetName)) {
             return true;
@@ -144,3 +148,4 @@ public class CustomTraceAspect {
         }
     }
 }
+*/

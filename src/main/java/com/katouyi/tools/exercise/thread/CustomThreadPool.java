@@ -1,6 +1,5 @@
 package com.katouyi.tools.exercise.thread;
 
-import com.ky.common.exception.AlarmLogger;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +31,6 @@ public class CustomThreadPool {
     class KyRejectAsyncThreadPoolHandler implements RejectedExecutionHandler {
         @Override
         public void rejectedExecution(Runnable task, ThreadPoolExecutor executor) {
-            AlarmLogger.error("async-thread-pool-thread 异步处理线程池 task rejected. " + executor.toString());
             logger.error("async-thread-pool-thread 异步处理线程池 task rejected. " + executor.toString());
         }
     }

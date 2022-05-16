@@ -1,4 +1,5 @@
 package com.katouyi.tools.redis.jedis;
+/*
 
 import com.ky.common.redis.core.RedisHandler;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -41,3 +42,4 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
 }
+*/

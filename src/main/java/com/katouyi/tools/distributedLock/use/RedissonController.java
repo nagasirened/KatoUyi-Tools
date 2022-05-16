@@ -22,6 +22,7 @@ public class RedissonController {
     @Autowired
     private RedissonClient redisson;
 
+
     @GetMapping("/redisson")
     public String redisLock() throws InterruptedException {
         RLock rLock = redisson.getLock("order");

@@ -2,10 +2,7 @@ package com.katouyi.tools.consistencyHash.loadbalance;
 
 import com.katouyi.tools.consistencyHash.entity.LoadBalanceRequest;
 import com.katouyi.tools.consistencyHash.entity.ServiceInstance;
-import com.ky.common.lang.StringUtils;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @description: 负载均衡器抽象类

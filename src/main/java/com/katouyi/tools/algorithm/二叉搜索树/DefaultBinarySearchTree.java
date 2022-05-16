@@ -2,10 +2,7 @@ package com.katouyi.tools.algorithm.二叉搜索树;
 
 import com.katouyi.tools.algorithm.User;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *             7

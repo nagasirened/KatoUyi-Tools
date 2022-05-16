@@ -1,6 +1,6 @@
 package com.katouyi.tools.exercise.common.util;
 
-import jodd.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ public class TraceUtil {
      */
     public static String getTraceId(HttpServletRequest request) {
         String traceId = request.getParameter("traceId");
-        if (StringUtil.isBlank(traceId)) {
+        if (StringUtils.isBlank(traceId)) {
             traceId = request.getHeader("traceId");
         }
         return traceId;
@@ -29,7 +29,7 @@ public class TraceUtil {
      * @param traceId　跟踪ID
      */
     public static void mdcTraceId (String traceId) {
-        if (StringUtil.isNotBlank(traceId)) {
+        if (StringUtils.isNotBlank(traceId)) {
             MDC.put("traceId", traceId);
         }
     }
