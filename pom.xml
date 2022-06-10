@@ -352,16 +352,11 @@
             <version>2.2.6</version>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-spring</artifactId>
-            <version>7.37.0.Final</version>
-        </dependency>-->
-
+        <!-- CustomThreadPoolTaskExecutor 提供了主线程向线程池线程传递threadLocal的能力 -->
         <dependency>
-            <groupId>org.drools</groupId>
-            <artifactId>drools-compiler</artifactId>
-            <version>7.37.0.Final</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>2.12.0</version>
         </dependency>
 
     </dependencies>
