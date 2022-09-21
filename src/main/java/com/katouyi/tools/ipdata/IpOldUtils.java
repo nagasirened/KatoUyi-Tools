@@ -1,7 +1,7 @@
 package com.katouyi.tools.ipdata;
 
 import cn.hutool.core.io.IoUtil;
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
 import org.lionsoul.ip2region.DataBlock;
 import org.lionsoul.ip2region.DbConfig;
 import org.lionsoul.ip2region.DbSearcher;
@@ -59,7 +59,7 @@ public class IpOldUtils {
      */
     private Map<String, String> getDetail(String region, String ip) {
         HashMap<String, String> resultMap = new HashMap<>();
-        if ( StringUtils.isBlank(region)) {
+        if ( StrUtil.isBlank(region)) {
             return resultMap;
         }
         String[] regionArr = region.split("\\|");
@@ -71,9 +71,6 @@ public class IpOldUtils {
         String country = regionArr[0];
         String province = regionArr[2];
         String city = regionArr[3];
-        if (org.apache.commons.lang3.StringUtils.isAnyEmpty(country, province, city)) {
-            logger.info("IpOldUtils#getDetail, sth address info is null, country: {}, province: {}, city: {}", country, province, city);
-        }
         resultMap.put(COUNTRY, country);
         resultMap.put(PROVINCE, province);
         resultMap.put(CITY, city);

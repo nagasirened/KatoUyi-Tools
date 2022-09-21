@@ -10,11 +10,11 @@ public class TokenBucket {
     /**
      * 1s  1000ms
      */
-    private static final long NANO = 1000000000;
-    private final long capacity; // 水量上限，补出多的将被抛弃
-    private long leftQuota;      // 桶里剩余的水量
-    private long leakingTs;      // 当前的时间戳
+    private final long capacity; // 令牌量上限，补出多的将被抛弃
+    private long leftQuota;      // 桶里剩余的令牌量
+    private long lastTime;      // 当前的时间戳
     private final int rate;      // 单位秒补水的量
+    private final long millis;   // 单位时间(毫秒数)
 
     /**
      * 构造函数
@@ -22,34 +22,34 @@ public class TokenBucket {
      * @param capacity 容量
      * @param rate 每秒放入令牌数量
      */
-    public TokenBucket(int capacity, int rate) {
+    public TokenBucket(int capacity, int rate, long millis) {
         this.capacity = capacity;
-        this.leakingTs = System.nanoTime();
+        this.lastTime = System.currentTimeMillis();
         this.rate = rate;
+        this.millis = millis;
     }
 
     /**
      * 补水
      */
     private void makeSpace() {
-        long now = System.nanoTime();
-        long time = now - leakingTs;
-        long leaked = time * rate / NANO;
+        long now = System.currentTimeMillis();
+        long time = now - lastTime;
+        long leaked = time * rate / millis;
         if (leaked < 1) {
             return;
         }
         leftQuota += leaked;
-
         if (leftQuota > capacity) {
             leftQuota = capacity;
         }
-        leakingTs = now;
+        lastTime = now;
     }
 
     /**
      * 获取令牌
-     * @param quota 漏水量
-     * @return 是否获取令牌成功
+     * @param quota 需要获取的令牌数
+     * @return      是否获取令牌成功
      */
     public boolean tryWatering(int quota) {
         makeSpace();

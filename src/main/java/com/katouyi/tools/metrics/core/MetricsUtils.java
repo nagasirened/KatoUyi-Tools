@@ -43,8 +43,11 @@ public class MetricsUtils {
      * 接口耗时
      */
     public static void interfaceTimer(Timer.Sample sample, String interfaceName) {
-        Timer timer = Timer.builder(MetricNameEnum.INTERFACE_TIMER.getName()).tag(MetricConstant.INTERFACE_NAME, interfaceName)
-                .publishPercentileHistogram().publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
+        Timer timer = Timer.builder(MetricNameEnum.INTERFACE_TIMER.getName())
+                .tag(MetricConstant.INTERFACE_NAME, interfaceName)
+                .publishPercentileHistogram()
+                .publishPercentiles(MetricConstant.PERCENTILES_ARRAY)
+                .register(Metrics.globalRegistry);
         sample.stop(timer);
     }
 
@@ -55,7 +58,8 @@ public class MetricsUtils {
         Timer timer = Timer.builder(MetricNameEnum.METHOD_TIMER.getName())
                 .tag(MetricConstant.METHOD_NAME, methodName)
                 .publishPercentileHistogram()
-                .publishPercentiles(MetricConstant.PERCENTILES_ARRAY).register(Metrics.globalRegistry);
+                .publishPercentiles(MetricConstant.PERCENTILES_ARRAY)
+                .register(Metrics.globalRegistry);
         sample.stop(timer);
     }
 
@@ -117,8 +121,9 @@ public class MetricsUtils {
     public static void metricsMusicProportion(int size, String stageName, String tagName) {
         String key = MetricNameEnum.MUSIC_PROPORTION.getName() + stageName + tagName;
         gaugeMap.put(key, new AtomicLong(size));
-        Gauge.builder(MetricNameEnum.MUSIC_PROPORTION.getName(), gaugeMap, gaugeMap -> gaugeMap.get(key).get())
-                .tags(MetricConstant.STAGE_NAME, stageName, MetricConstant.TAG_NAME, tagName).register(Metrics.globalRegistry);
+        Gauge.builder(MetricNameEnum.MUSIC_PROPORTION.getName(), gaugeMap, gaugeMap -> gaugeMap.get(key).get() )
+                .tags(MetricConstant.STAGE_NAME, stageName, MetricConstant.TAG_NAME, tagName)
+                .register(Metrics.globalRegistry);
     }
 
     /**

@@ -28,15 +28,7 @@ Micrometer 中有两个最核心的概念，分别是计量器（Meter）和计�
 
 其次，在application.yml 中配置如下：
 ```yaml
-management:
-  metrics:
-    tags:
-      application: ${spring.application.name}
-  endpoints:
-    web:
-      exposure:
-        include: prometheus
-      base-path: /metrics
+
       
 spring:
   application:

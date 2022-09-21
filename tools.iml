@@ -74,6 +74,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:5.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson-spring-boot-starter:3.14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.redisson:redisson-spring-data-23:3.14.0" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson:3.15.0" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.49.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.49.Final" level="project" />
@@ -362,6 +363,16 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.6" level="project" />
     <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-spring-jaeger-web-starter:3.3.1" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-spring-jaeger-starter:3.3.1" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-spring-tracer-configuration-starter:0.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.jaegertracing:jaeger-client:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.jaegertracing:jaeger-thrift:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.jaegertracing:jaeger-core:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.jaegertracing:jaeger-tracerresolver:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-spring-web-starter:4.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-spring-web:4.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-web-servlet-filter:0.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.opentracing.contrib:opentracing-tracerresolver:0.1.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.3.2" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib:3.3.0" level="project" />
@@ -380,20 +391,7 @@
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.11" level="project" />
-    <orderEntry type="library" name="Maven: org.drools:drools-compiler:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.drools:drools-core-reflective:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.drools:drools-core:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.drools:drools-core-dynamic:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie.soup:kie-soup-project-datamodel-commons:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie.soup:kie-soup-project-datamodel-api:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie:kie-api:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie:kie-internal:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie.soup:kie-soup-maven-support:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.kie.soup:kie-soup-commons:7.37.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mvel:mvel2:2.4.7.Final" level="project" />
-    <orderEntry type="library" name="Maven: com.thoughtworks.xstream:xstream:1.4.11.1" level="project" />
-    <orderEntry type="library" name="Maven: xmlpull:xmlpull:1.1.3.1" level="project" />
-    <orderEntry type="library" name="Maven: xpp3:xpp3_min:1.1.4c" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:transmittable-thread-local:2.12.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.rholder:guava-retrying:2.0.0" level="project" />
   </component>
 </module>

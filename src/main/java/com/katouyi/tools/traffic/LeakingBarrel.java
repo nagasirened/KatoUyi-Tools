@@ -2,16 +2,15 @@ package com.katouyi.tools.traffic;
 
 public class LeakingBarrel {
 
-    private static final long MILLIS = 1000;
     /**
      * 水流出的速率
      */
-    private long rate;
+    private final long rate;
 
     /**
      * 桶的大小
      */
-    private long burst;
+    private final int burst;
 
     /**
      * 最后更新时间
@@ -23,7 +22,7 @@ public class LeakingBarrel {
      */
     private int water;
 
-    public LeakingBarrel(long rate, long burst) {
+    public LeakingBarrel(long rate, int burst) {
         this.rate = rate;
         this.burst = burst;
         this.refreshTime = System.currentTimeMillis();
@@ -48,11 +47,11 @@ public class LeakingBarrel {
     public boolean tryAddWater(int quota) {
         refreshWater();
         int will = water + quota;
-        if (will > burst) {
+        if (will <= burst) {
             water = will;
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

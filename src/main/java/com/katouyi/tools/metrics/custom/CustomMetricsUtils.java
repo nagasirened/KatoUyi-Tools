@@ -31,6 +31,13 @@ public class CustomMetricsUtils {
     private String appName;
 
     /**
+     * 拼接查询索引词
+     */
+    private String pieceName(String type) {
+        return appName + type;
+    }
+
+    /**
      * ==================================================================
      *                          gauge
      * ==================================================================
@@ -93,13 +100,6 @@ public class CustomMetricsUtils {
                 .tags(parseTag(tagMap))
                 .register(Metrics.globalRegistry);
         counter.increment(number);
-    }
-
-    /**
-     * 拼接查询索引词
-     */
-    private String pieceName(String type) {
-        return appName + type;
     }
 
     /**
