@@ -1,19 +1,25 @@
 package com.katouyi.tools.traffic;
 
+/**
+ * 滑动窗口限流
+ */
 public class SlideWindow {
 
-    /* 记录上一次请求的时间 */
-    public long lastTime = System.currentTimeMillis();
-    /* 记录时间窗时间大小, 单位ms */
-    public final int interval = 1000;
-    /* 区间数量 */
-    public final int number = 10;
-    /* 流量限制 */
-    public final int limit = 5;
-    /* counter, 区间数为10 */
-    public final int[] array = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    /* 当前处理窗口的下标 */
-    public int index = 0;
+    public long lastTime;               // 记录上一次请求的时间
+    public final int windowInterval;    // 记录时间窗时间大小, 单位ms
+    public final int number;            // 区间数量
+    public final int limit;             // 流量限制
+    public final int[] array;           // 计数数组
+    public int index = 0;               // 当前处理窗口的下标
+
+    public SlideWindow(int limit, int windowInterval, int number) {
+        this.limit = limit;
+        this.windowInterval = windowInterval;
+        this.number = number;
+        this.lastTime = System.currentTimeMillis();
+        this.array = new int[number];
+    }
+
 
     public synchronized boolean trying() {
         refresh(calculationTimes());
@@ -34,7 +40,7 @@ public class SlideWindow {
     public long calculationTimes() {
         long now = System.currentTimeMillis();
         if ( now > lastTime ) {
-            int everySize = (interval / number);
+            int everySize = (windowInterval / number);
             return now / everySize - lastTime / everySize;
         }
         return 0;
@@ -52,7 +58,7 @@ public class SlideWindow {
             index = (index + 1) % number;
             array[index] = 0;
         }
-        lastTime = lastTime + times * (interval / number);
+        lastTime = lastTime + times * (windowInterval / number);
     }
 
 }

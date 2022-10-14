@@ -1,25 +1,30 @@
 package com.katouyi.tools.traffic;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DockWindow {
 
-    public long timestamp = System.currentTimeMillis();
+    public long timestamp;
     /* 计数器 */
-    public AtomicInteger counter = new AtomicInteger(0);
+    public int counter;
     /* 消息的速度限制, 大于0的整数 */
-    public final int limit = 5;
+    public final int limit;
     /* 时间窗口为1000ms */
-    public final int window = 1000;
+    public final int window;
+
+    public DockWindow(int limit, int window) {
+        this.limit = limit;
+        this.window = window;
+        this.timestamp = System.currentTimeMillis();
+        this.counter = 0;
+    }
 
     public boolean grant() {
         long now = System.currentTimeMillis();
         if ( now < timestamp + window ) {
-            int i = counter.addAndGet( 1 );
-            return i <= limit;
+            return ++counter <= limit;
         } else {
             timestamp = now;
-            counter = new AtomicInteger(1);
+            counter = 1;
             return true;
         }
     }
