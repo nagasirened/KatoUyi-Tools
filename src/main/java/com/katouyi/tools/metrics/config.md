@@ -72,7 +72,7 @@ public class AutoTimingConfiguration {
 就可以看到应用的 一系列不同类型 metrics 信息，例如 http_server_requests_seconds summary、jvm_memory_used_bytes gauge、jvm_gc_memory_promoted_bytes_total counter 等等（如果本地能看到各种指标说明集成成功了）。
 
 然后要上线需要在K8s配置文件加入如下配置（找运维添加 说加一下采集普罗米修斯指标）：
-```lua
+```
 podAnnotations:
   prometheus.io/port: "8080"
   prometheus.io/scrape: "true"
