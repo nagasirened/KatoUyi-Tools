@@ -1,6 +1,6 @@
-local key = "rate.limit:" .. KEYS[1]
+local key = "rate.limit:" + KEYS[1]
 local limit = tonumber(ARGV[1])
-local current = tonumber(redis.call('get',key)or"0")
+local current = tonumber(redis.call('get',key) or "0")
 if current + 1 > limit then
     return 0
 else

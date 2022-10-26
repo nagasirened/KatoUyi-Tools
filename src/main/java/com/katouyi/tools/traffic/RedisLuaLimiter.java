@@ -1,5 +1,6 @@
 package com.katouyi.tools.traffic;
 
+import cn.hutool.core.date.DateUtil;
 import org.assertj.core.util.Lists;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -10,7 +11,6 @@ import org.springframework.scripting.support.ResourceScriptSource;
 import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class RedisLuaLimiter {
 
@@ -26,8 +26,8 @@ public class RedisLuaLimiter {
 
     public boolean testLock() {
         Integer execute = redisTemplate.execute( getRedisScript(),
-                Lists.newArrayList( "key1" ),
-                Collections.singletonList( "value1" )
+                Lists.newArrayList( "key1" + DateUtil.currentSeconds() ),
+                Collections.singletonList( 20 )
         );
         return Optional.ofNullable( execute ).orElse( 0 ) > 0;
     }

@@ -1,5 +1,7 @@
 package com.katouyi.tools.traffic;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 滑动窗口限流
  */
@@ -37,6 +39,9 @@ public class SlideWindow {
         }
     }
 
+    /**
+     * 计算滑动了多少个窗口
+     */
     public long calculationTimes() {
         long now = System.currentTimeMillis();
         if ( now > lastTime ) {
@@ -59,6 +64,18 @@ public class SlideWindow {
             array[index] = 0;
         }
         lastTime = lastTime + times * (windowInterval / number);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        SlideWindow slideWindow = new SlideWindow( 10, 1000, 10 );
+        for ( int i = 0; i < 5; i++ ) {
+            Thread.sleep( 50 );
+            System.out.println( slideWindow.trying() );
+        }
+        TimeUnit.MILLISECONDS.sleep( 851 );
+        for ( int i = 0; i < 10; i++ ) {
+            System.out.println( slideWindow.trying() );
+        }
     }
 
 }

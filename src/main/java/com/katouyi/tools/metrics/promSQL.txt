@@ -32,3 +32,8 @@ max(method_timed_seconds{class="com.ky.recommend.service.impl.RecallRateFeatureS
 7.recallModel线程池监控
 max(reco_api_thread_pool_monitor{parameterName="recallSourceActiveCount"})
 max(reco_api_thread_pool_monitor{parameterName="recallSourceQueueSize"})
+
+
+
+avg(increase(jvm_memory_committed_bytes{application="central_social_recommend", area="heap"} [1m])) by (id)
+Legend {{id}}

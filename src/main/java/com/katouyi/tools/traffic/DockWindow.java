@@ -28,4 +28,11 @@ public class DockWindow {
             return true;
         }
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        DockWindow dockWindow = new DockWindow( 10, 1000 );
+        for ( int i = 0; i < 20; i++ ) {
+            System.out.println( dockWindow.grant() );
+        }
+    }
 }

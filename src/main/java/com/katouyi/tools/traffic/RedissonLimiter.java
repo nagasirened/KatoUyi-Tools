@@ -9,7 +9,7 @@ import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 import org.redisson.config.TransportMode;
 
-public class RedissionLimiter {
+public class RedissonLimiter {
 
     public static RedissonClient getInstance() {
         Config config = new Config();
@@ -22,7 +22,7 @@ public class RedissionLimiter {
     public static void main(String[] args) throws InterruptedException {
         RedissonClient instance = getInstance();
         RRateLimiter rateLimiter = instance.getRateLimiter("test_limiter");
-        rateLimiter.trySetRate( RateType.PER_CLIENT, 10, 1, RateIntervalUnit.SECONDS);
+        rateLimiter.setRate( RateType.PER_CLIENT, 10, 1, RateIntervalUnit.SECONDS);
         long t1 = System.currentTimeMillis();
         for ( int i = 1; i <= 20; i++ ) {
             if ( rateLimiter.tryAcquire() ) {
