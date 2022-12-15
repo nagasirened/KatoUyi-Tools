@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel;
 public class _001ByteBuffer读取txt并打印 {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = FileUtil.file("/Users/katouyi/project/mine/testNetty/a.txt");
+        File file = FileUtil.file("/Users/zengguangfu/project/a.csv");
         FileInputStream fileInputStream = new FileInputStream(file);
         try (
             FileChannel channel = fileInputStream.getChannel()
@@ -19,8 +19,7 @@ public class _001ByteBuffer读取txt并打印 {
             // 写数据
             ByteBuffer buffer = ByteBuffer.allocate(10);
             StringBuilder sb = new StringBuilder();
-            int hasNext = 0;
-            while ((hasNext = channel.read(buffer)) > 0) {
+            while ( channel.read(buffer) > 0) {
                 // 切换至读模式
                 buffer.flip();
                 while (buffer.hasRemaining()) {

@@ -18,8 +18,8 @@ import java.io.File;
 
 public class JavaMailTemplateImpl implements MailTemplate {
     private final Logger logger = LoggerFactory.getLogger(JavaMailTemplateImpl.class);
-    private JavaMailSender mailSender;
-    private MailProperties mailProperties;
+    private final JavaMailSender mailSender;
+    private final MailProperties mailProperties;
 
     public JavaMailTemplateImpl(JavaMailSender mailSender, MailProperties mailProperties) {
         this.mailSender = mailSender;

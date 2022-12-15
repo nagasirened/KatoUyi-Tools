@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 public class _003字符串和ByteBuffer相互转换 {
 
     public static void main(String[] args) {
-
+        func1();
     }
 
     public static void func1() {

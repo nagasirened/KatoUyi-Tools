@@ -1,6 +1,7 @@
 package com.katouyi.tools.netty.nio;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 
 /**
  *
@@ -38,6 +39,7 @@ public class _004NIO粘包与半包 {
         deal(buffer);
     }
 
+
     private static void deal(ByteBuffer buffer) {
         // 切换至读模式
         buffer.flip();
@@ -52,6 +54,8 @@ public class _004NIO粘包与半包 {
                     subBuffer.put(buffer.get());        // get() 会移动position
                     q++;
                 }
+                subBuffer.flip();
+                System.out.println( StandardCharsets.UTF_8.decode( subBuffer ).toString() );
                 ByteBufferUtil.debugAll(subBuffer);  //当前这条处理完了，处理下一条
             }
         }
