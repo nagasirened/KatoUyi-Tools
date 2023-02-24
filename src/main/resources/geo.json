@@ -1,0 +1,2348 @@
+[
+  {
+    "name": "北京",
+    "longitude": 116.395645,
+    "latitude": 39.929986,
+    "level": 1
+  },
+  {
+    "name": "上海",
+    "longitude": 121.487899,
+    "latitude": 31.249162,
+    "level": 1
+  },
+  {
+    "name": "天津",
+    "longitude": 117.210813,
+    "latitude": 39.14393,
+    "level": 1
+  },
+  {
+    "name": "重庆",
+    "longitude": 106.530635,
+    "latitude": 29.544606,
+    "level": 1
+  },
+  {
+    "name": "香港",
+    "longitude": 114.186124,
+    "latitude": 22.293586,
+    "level": 0
+  },
+  {
+    "name": "澳门",
+    "longitude": 113.557519,
+    "latitude": 22.204118,
+    "level": 0
+  },
+  {
+    "name": "台湾",
+    "longitude": 120.961454,
+    "latitude": 23.80406,
+    "level": 0
+  },
+  {
+    "name": "安徽",
+    "longitude": 117.216005,
+    "latitude": 31.859252,
+    "level": 2
+  },
+  {
+    "name": "合肥",
+    "longitude": 117.282699,
+    "latitude": 31.866942,
+    "level": 3
+  },
+  {
+    "name": "安庆",
+    "longitude": 117.058739,
+    "latitude": 30.537898,
+    "level": 3
+  },
+  {
+    "name": "蚌埠",
+    "longitude": 117.35708,
+    "latitude": 32.929499,
+    "level": 3
+  },
+  {
+    "name": "亳州",
+    "longitude": 115.787928,
+    "latitude": 33.871211,
+    "level": 3
+  },
+  {
+    "name": "巢湖",
+    "longitude": 117.88049,
+    "latitude": 31.608733,
+    "level": 3
+  },
+  {
+    "name": "池州",
+    "longitude": 117.494477,
+    "latitude": 30.660019,
+    "level": 3
+  },
+  {
+    "name": "滁州",
+    "longitude": 118.32457,
+    "latitude": 32.317351,
+    "level": 3
+  },
+  {
+    "name": "阜阳",
+    "longitude": 115.820932,
+    "latitude": 32.901211,
+    "level": 3
+  },
+  {
+    "name": "淮北",
+    "longitude": 116.791447,
+    "latitude": 33.960023,
+    "level": 3
+  },
+  {
+    "name": "淮南",
+    "longitude": 117.018639,
+    "latitude": 32.642812,
+    "level": 3
+  },
+  {
+    "name": "黄山",
+    "longitude": 118.29357,
+    "latitude": 29.734435,
+    "level": 3
+  },
+  {
+    "name": "六安",
+    "longitude": 116.505253,
+    "latitude": 31.755558,
+    "level": 3
+  },
+  {
+    "name": "马鞍山",
+    "longitude": 118.515882,
+    "latitude": 31.688528,
+    "level": 3
+  },
+  {
+    "name": "宿州",
+    "longitude": 116.988692,
+    "latitude": 33.636772,
+    "level": 3
+  },
+  {
+    "name": "铜陵",
+    "longitude": 117.819429,
+    "latitude": 30.94093,
+    "level": 3
+  },
+  {
+    "name": "芜湖",
+    "longitude": 118.384108,
+    "latitude": 31.36602,
+    "level": 3
+  },
+  {
+    "name": "宣城",
+    "longitude": 118.752096,
+    "latitude": 30.951642,
+    "level": 3
+  },
+  {
+    "name": "福建",
+    "longitude": 117.984943,
+    "latitude": 26.050118,
+    "level": 2
+  },
+  {
+    "name": "福州",
+    "longitude": 119.330221,
+    "latitude": 26.047125,
+    "level": 3
+  },
+  {
+    "name": "龙岩",
+    "longitude": 117.017997,
+    "latitude": 25.078685,
+    "level": 3
+  },
+  {
+    "name": "南平",
+    "longitude": 118.181883,
+    "latitude": 26.643626,
+    "level": 3
+  },
+  {
+    "name": "宁德",
+    "longitude": 119.542082,
+    "latitude": 26.656527,
+    "level": 3
+  },
+  {
+    "name": "莆田",
+    "longitude": 119.077731,
+    "latitude": 25.44845,
+    "level": 3
+  },
+  {
+    "name": "泉州",
+    "longitude": 118.600362,
+    "latitude": 24.901652,
+    "level": 3
+  },
+  {
+    "name": "三明",
+    "longitude": 117.642194,
+    "latitude": 26.270835,
+    "level": 3
+  },
+  {
+    "name": "厦门",
+    "longitude": 118.103886,
+    "latitude": 24.489231,
+    "level": 3
+  },
+  {
+    "name": "漳州",
+    "longitude": 117.676205,
+    "latitude": 24.517065,
+    "level": 3
+  },
+  {
+    "name": "甘肃",
+    "longitude": 102.457625,
+    "latitude": 38.103267,
+    "level": 2
+  },
+  {
+    "name": "兰州",
+    "longitude": 103.823305,
+    "latitude": 36.064226,
+    "level": 3
+  },
+  {
+    "name": "白银",
+    "longitude": 104.171241,
+    "latitude": 36.546682,
+    "level": 3
+  },
+  {
+    "name": "定西",
+    "longitude": 104.626638,
+    "latitude": 35.586056,
+    "level": 3
+  },
+  {
+    "name": "甘南州",
+    "longitude": 102.917442,
+    "latitude": 34.992211,
+    "level": 3
+  },
+  {
+    "name": "嘉峪关",
+    "longitude": 98.281635,
+    "latitude": 39.802397,
+    "level": 3
+  },
+  {
+    "name": "金昌",
+    "longitude": 102.208126,
+    "latitude": 38.516072,
+    "level": 3
+  },
+  {
+    "name": "酒泉",
+    "longitude": 98.508415,
+    "latitude": 39.741474,
+    "level": 3
+  },
+  {
+    "name": "临夏州",
+    "longitude": 103.215249,
+    "latitude": 35.598514,
+    "level": 3
+  },
+  {
+    "name": "陇南",
+    "longitude": 104.934573,
+    "latitude": 33.39448,
+    "level": 3
+  },
+  {
+    "name": "平凉",
+    "longitude": 106.688911,
+    "latitude": 35.55011,
+    "level": 3
+  },
+  {
+    "name": "庆阳",
+    "longitude": 107.644227,
+    "latitude": 35.726801,
+    "level": 3
+  },
+  {
+    "name": "天水",
+    "longitude": 105.736932,
+    "latitude": 34.584319,
+    "level": 3
+  },
+  {
+    "name": "武威",
+    "longitude": 102.640147,
+    "latitude": 37.933172,
+    "level": 3
+  },
+  {
+    "name": "张掖",
+    "longitude": 100.459892,
+    "latitude": 38.93932,
+    "level": 3
+  },
+  {
+    "name": "广东",
+    "longitude": 113.394818,
+    "latitude": 23.408004,
+    "level": 2
+  },
+  {
+    "name": "广州",
+    "longitude": 113.30765,
+    "latitude": 23.120049,
+    "level": 3
+  },
+  {
+    "name": "潮州",
+    "longitude": 116.630076,
+    "latitude": 23.661812,
+    "level": 3
+  },
+  {
+    "name": "东莞",
+    "longitude": 113.763434,
+    "latitude": 23.043024,
+    "level": 3
+  },
+  {
+    "name": "佛山",
+    "longitude": 113.134026,
+    "latitude": 23.035095,
+    "level": 3
+  },
+  {
+    "name": "河源",
+    "longitude": 114.713721,
+    "latitude": 23.757251,
+    "level": 3
+  },
+  {
+    "name": "惠州",
+    "longitude": 114.410658,
+    "latitude": 23.11354,
+    "level": 3
+  },
+  {
+    "name": "江门",
+    "longitude": 113.078125,
+    "latitude": 22.575117,
+    "level": 3
+  },
+  {
+    "name": "揭阳",
+    "longitude": 116.379501,
+    "latitude": 23.547999,
+    "level": 3
+  },
+  {
+    "name": "茂名",
+    "longitude": 110.931245,
+    "latitude": 21.668226,
+    "level": 3
+  },
+  {
+    "name": "梅州",
+    "longitude": 116.126403,
+    "latitude": 24.304571,
+    "level": 3
+  },
+  {
+    "name": "清远",
+    "longitude": 113.040773,
+    "latitude": 23.698469,
+    "level": 3
+  },
+  {
+    "name": "汕头",
+    "longitude": 116.72865,
+    "latitude": 23.383908,
+    "level": 3
+  },
+  {
+    "name": "汕尾",
+    "longitude": 115.372924,
+    "latitude": 22.778731,
+    "level": 3
+  },
+  {
+    "name": "韶关",
+    "longitude": 113.594461,
+    "latitude": 24.80296,
+    "level": 3
+  },
+  {
+    "name": "深圳",
+    "longitude": 114.025974,
+    "latitude": 22.546054,
+    "level": 3
+  },
+  {
+    "name": "阳江",
+    "longitude": 111.97701,
+    "latitude": 21.871517,
+    "level": 3
+  },
+  {
+    "name": "云浮",
+    "longitude": 112.050946,
+    "latitude": 22.937976,
+    "level": 3
+  },
+  {
+    "name": "湛江",
+    "longitude": 110.365067,
+    "latitude": 21.257463,
+    "level": 3
+  },
+  {
+    "name": "肇庆",
+    "longitude": 112.479653,
+    "latitude": 23.078663,
+    "level": 3
+  },
+  {
+    "name": "中山",
+    "longitude": 113.42206,
+    "latitude": 22.545178,
+    "level": 3
+  },
+  {
+    "name": "珠海",
+    "longitude": 113.562447,
+    "latitude": 22.256915,
+    "level": 3
+  },
+  {
+    "name": "广西",
+    "longitude": 108.924274,
+    "latitude": 23.552255,
+    "level": 2
+  },
+  {
+    "name": "南宁",
+    "longitude": 108.297234,
+    "latitude": 22.806493,
+    "level": 3
+  },
+  {
+    "name": "百色",
+    "longitude": 106.631821,
+    "latitude": 23.901512,
+    "level": 3
+  },
+  {
+    "name": "北海",
+    "longitude": 109.122628,
+    "latitude": 21.472718,
+    "level": 3
+  },
+  {
+    "name": "崇左",
+    "longitude": 107.357322,
+    "latitude": 22.415455,
+    "level": 3
+  },
+  {
+    "name": "防城港",
+    "longitude": 108.351791,
+    "latitude": 21.617398,
+    "level": 3
+  },
+  {
+    "name": "桂林",
+    "longitude": 110.26092,
+    "latitude": 25.262901,
+    "level": 3
+  },
+  {
+    "name": "贵港",
+    "longitude": 109.613708,
+    "latitude": 23.103373,
+    "level": 3
+  },
+  {
+    "name": "河池",
+    "longitude": 108.069948,
+    "latitude": 24.699521,
+    "level": 3
+  },
+  {
+    "name": "贺州",
+    "longitude": 111.552594,
+    "latitude": 24.411054,
+    "level": 3
+  },
+  {
+    "name": "来宾",
+    "longitude": 109.231817,
+    "latitude": 23.741166,
+    "level": 3
+  },
+  {
+    "name": "柳州",
+    "longitude": 109.422402,
+    "latitude": 24.329053,
+    "level": 3
+  },
+  {
+    "name": "钦州",
+    "longitude": 108.638798,
+    "latitude": 21.97335,
+    "level": 3
+  },
+  {
+    "name": "梧州",
+    "longitude": 111.305472,
+    "latitude": 23.485395,
+    "level": 3
+  },
+  {
+    "name": "玉林",
+    "longitude": 110.151676,
+    "latitude": 22.643974,
+    "level": 3
+  },
+  {
+    "name": "贵州",
+    "longitude": 106.734996,
+    "latitude": 26.902826,
+    "level": 2
+  },
+  {
+    "name": "贵阳",
+    "longitude": 106.709177,
+    "latitude": 26.629907,
+    "level": 3
+  },
+  {
+    "name": "安顺",
+    "longitude": 105.92827,
+    "latitude": 26.228595,
+    "level": 3
+  },
+  {
+    "name": "毕节地区",
+    "longitude": 105.300492,
+    "latitude": 27.302612,
+    "level": 3
+  },
+  {
+    "name": "六盘水",
+    "longitude": 104.852087,
+    "latitude": 26.591866,
+    "level": 3
+  },
+  {
+    "name": "铜仁地区",
+    "longitude": 109.196161,
+    "latitude": 27.726271,
+    "level": 3
+  },
+  {
+    "name": "遵义",
+    "longitude": 106.93126,
+    "latitude": 27.699961,
+    "level": 3
+  },
+  {
+    "name": "黔西南州",
+    "longitude": 104.900558,
+    "latitude": 25.095148,
+    "level": 3
+  },
+  {
+    "name": "黔东南州",
+    "longitude": 107.985353,
+    "latitude": 26.583992,
+    "level": 3
+  },
+  {
+    "name": "黔南州",
+    "longitude": 107.523205,
+    "latitude": 26.264536,
+    "level": 3
+  },
+  {
+    "name": "海南",
+    "longitude": 109.733755,
+    "latitude": 19.180501,
+    "level": 2
+  },
+  {
+    "name": "海口",
+    "longitude": 110.330802,
+    "latitude": 20.022071,
+    "level": 3
+  },
+  {
+    "name": "白沙",
+    "longitude": 109.358586,
+    "latitude": 19.216056,
+    "level": 3
+  },
+  {
+    "name": "保亭",
+    "longitude": 109.656113,
+    "latitude": 18.597592,
+    "level": 3
+  },
+  {
+    "name": "昌江",
+    "longitude": 109.0113,
+    "latitude": 19.222483,
+    "level": 3
+  },
+  {
+    "name": "儋州",
+    "longitude": 109.413973,
+    "latitude": 19.571153,
+    "level": 3
+  },
+  {
+    "name": "澄迈",
+    "longitude": 109.996736,
+    "latitude": 19.693135,
+    "level": 3
+  },
+  {
+    "name": "东方",
+    "longitude": 108.85101,
+    "latitude": 18.998161,
+    "level": 3
+  },
+  {
+    "name": "定安",
+    "longitude": 110.32009,
+    "latitude": 19.490991,
+    "level": 3
+  },
+  {
+    "name": "琼海",
+    "longitude": 110.414359,
+    "latitude": 19.21483,
+    "level": 3
+  },
+  {
+    "name": "琼中",
+    "longitude": 109.861849,
+    "latitude": 19.039771,
+    "level": 3
+  },
+  {
+    "name": "乐东",
+    "longitude": 109.062698,
+    "latitude": 18.658614,
+    "level": 3
+  },
+  {
+    "name": "临高",
+    "longitude": 109.724101,
+    "latitude": 19.805922,
+    "level": 3
+  },
+  {
+    "name": "陵水",
+    "longitude": 109.948661,
+    "latitude": 18.575985,
+    "level": 3
+  },
+  {
+    "name": "三亚",
+    "longitude": 109.522771,
+    "latitude": 18.257776,
+    "level": 3
+  },
+  {
+    "name": "屯昌",
+    "longitude": 110.063364,
+    "latitude": 19.347749,
+    "level": 3
+  },
+  {
+    "name": "万宁",
+    "longitude": 110.292505,
+    "latitude": 18.839886,
+    "level": 3
+  },
+  {
+    "name": "文昌",
+    "longitude": 110.780909,
+    "latitude": 19.750947,
+    "level": 3
+  },
+  {
+    "name": "五指山",
+    "longitude": 109.51775,
+    "latitude": 18.831306,
+    "level": 3
+  },
+  {
+    "name": "河北",
+    "longitude": 115.661434,
+    "latitude": 38.61384,
+    "level": 2
+  },
+  {
+    "name": "石家庄",
+    "longitude": 114.522082,
+    "latitude": 38.048958,
+    "level": 3
+  },
+  {
+    "name": "保定",
+    "longitude": 115.49481,
+    "latitude": 38.886565,
+    "level": 3
+  },
+  {
+    "name": "沧州",
+    "longitude": 116.863806,
+    "latitude": 38.297615,
+    "level": 3
+  },
+  {
+    "name": "承德",
+    "longitude": 117.933822,
+    "latitude": 40.992521,
+    "level": 3
+  },
+  {
+    "name": "邯郸",
+    "longitude": 114.482694,
+    "latitude": 36.609308,
+    "level": 3
+  },
+  {
+    "name": "衡水",
+    "longitude": 115.686229,
+    "latitude": 37.746929,
+    "level": 3
+  },
+  {
+    "name": "廊坊",
+    "longitude": 116.703602,
+    "latitude": 39.518611,
+    "level": 3
+  },
+  {
+    "name": "秦皇岛",
+    "longitude": 119.604368,
+    "latitude": 39.945462,
+    "level": 3
+  },
+  {
+    "name": "唐山",
+    "longitude": 118.183451,
+    "latitude": 39.650531,
+    "level": 3
+  },
+  {
+    "name": "邢台",
+    "longitude": 114.520487,
+    "latitude": 37.069531,
+    "level": 3
+  },
+  {
+    "name": "张家口",
+    "longitude": 114.893782,
+    "latitude": 40.811188,
+    "level": 3
+  },
+  {
+    "name": "河南",
+    "longitude": 113.486804,
+    "latitude": 34.157184,
+    "level": 2
+  },
+  {
+    "name": "郑州",
+    "longitude": 113.649644,
+    "latitude": 34.75661,
+    "level": 3
+  },
+  {
+    "name": "安阳",
+    "longitude": 114.351807,
+    "latitude": 36.110267,
+    "level": 3
+  },
+  {
+    "name": "鹤壁",
+    "longitude": 114.29777,
+    "latitude": 35.755426,
+    "level": 3
+  },
+  {
+    "name": "焦作",
+    "longitude": 113.211836,
+    "latitude": 35.234608,
+    "level": 3
+  },
+  {
+    "name": "开封",
+    "longitude": 114.351642,
+    "latitude": 34.801854,
+    "level": 3
+  },
+  {
+    "name": "洛阳",
+    "longitude": 112.447525,
+    "latitude": 34.657368,
+    "level": 3
+  },
+  {
+    "name": "漯河",
+    "longitude": 114.046061,
+    "latitude": 33.576279,
+    "level": 3
+  },
+  {
+    "name": "南阳",
+    "longitude": 112.542842,
+    "latitude": 33.01142,
+    "level": 3
+  },
+  {
+    "name": "平顶山",
+    "longitude": 113.300849,
+    "latitude": 33.745301,
+    "level": 3
+  },
+  {
+    "name": "濮阳",
+    "longitude": 115.026627,
+    "latitude": 35.753298,
+    "level": 3
+  },
+  {
+    "name": "三门峡",
+    "longitude": 111.181262,
+    "latitude": 34.78332,
+    "level": 3
+  },
+  {
+    "name": "商丘",
+    "longitude": 115.641886,
+    "latitude": 34.438589,
+    "level": 3
+  },
+  {
+    "name": "新乡",
+    "longitude": 113.91269,
+    "latitude": 35.307258,
+    "level": 3
+  },
+  {
+    "name": "信阳",
+    "longitude": 114.085491,
+    "latitude": 32.128582,
+    "level": 3
+  },
+  {
+    "name": "许昌",
+    "longitude": 113.835312,
+    "latitude": 34.02674,
+    "level": 3
+  },
+  {
+    "name": "周口",
+    "longitude": 114.654102,
+    "latitude": 33.623741,
+    "level": 3
+  },
+  {
+    "name": "驻马店",
+    "longitude": 114.049154,
+    "latitude": 32.983158,
+    "level": 3
+  },
+  {
+    "name": "黑龙江",
+    "longitude": 128.047414,
+    "latitude": 47.356592,
+    "level": 2
+  },
+  {
+    "name": "哈尔滨",
+    "longitude": 126.657717,
+    "latitude": 45.773225,
+    "level": 3
+  },
+  {
+    "name": "大庆",
+    "longitude": 125.02184,
+    "latitude": 46.596709,
+    "level": 3
+  },
+  {
+    "name": "大兴安岭地区",
+    "longitude": 124.196104,
+    "latitude": 51.991789,
+    "level": 3
+  },
+  {
+    "name": "鹤岗",
+    "longitude": 130.292472,
+    "latitude": 47.338666,
+    "level": 3
+  },
+  {
+    "name": "黑河",
+    "longitude": 127.50083,
+    "latitude": 50.25069,
+    "level": 3
+  },
+  {
+    "name": "鸡西",
+    "longitude": 130.941767,
+    "latitude": 45.32154,
+    "level": 3
+  },
+  {
+    "name": "佳木斯",
+    "longitude": 130.284735,
+    "latitude": 46.81378,
+    "level": 3
+  },
+  {
+    "name": "牡丹江",
+    "longitude": 129.608035,
+    "latitude": 44.588521,
+    "level": 3
+  },
+  {
+    "name": "七台河",
+    "longitude": 131.019048,
+    "latitude": 45.775005,
+    "level": 3
+  },
+  {
+    "name": "齐齐哈尔",
+    "longitude": 123.987289,
+    "latitude": 47.3477,
+    "level": 3
+  },
+  {
+    "name": "双鸭山",
+    "longitude": 131.171402,
+    "latitude": 46.655102,
+    "level": 3
+  },
+  {
+    "name": "绥化",
+    "longitude": 126.989095,
+    "latitude": 46.646064,
+    "level": 3
+  },
+  {
+    "name": "伊春",
+    "longitude": 128.910766,
+    "latitude": 47.734685,
+    "level": 3
+  },
+  {
+    "name": "湖北",
+    "longitude": 112.410562,
+    "latitude": 31.209316,
+    "level": 2
+  },
+  {
+    "name": "武汉",
+    "longitude": 114.3162,
+    "latitude": 30.581084,
+    "level": 3
+  },
+  {
+    "name": "鄂州",
+    "longitude": 114.895594,
+    "latitude": 30.384439,
+    "level": 3
+  },
+  {
+    "name": "恩施",
+    "longitude": 109.517433,
+    "latitude": 30.308978,
+    "level": 3
+  },
+  {
+    "name": "黄冈",
+    "longitude": 114.906618,
+    "latitude": 30.446109,
+    "level": 3
+  },
+  {
+    "name": "黄石",
+    "longitude": 115.050683,
+    "latitude": 30.216127,
+    "level": 3
+  },
+  {
+    "name": "荆门",
+    "longitude": 112.21733,
+    "latitude": 31.042611,
+    "level": 3
+  },
+  {
+    "name": "荆州",
+    "longitude": 112.241866,
+    "latitude": 30.332591,
+    "level": 3
+  },
+  {
+    "name": "潜江",
+    "longitude": 112.768768,
+    "latitude": 30.343116,
+    "level": 3
+  },
+  {
+    "name": "神农架林区",
+    "longitude": 110.487231,
+    "latitude": 31.595768,
+    "level": 3
+  },
+  {
+    "name": "十堰",
+    "longitude": 110.801229,
+    "latitude": 32.636994,
+    "level": 3
+  },
+  {
+    "name": "随州",
+    "longitude": 113.379358,
+    "latitude": 31.717858,
+    "level": 3
+  },
+  {
+    "name": "天门",
+    "longitude": 113.12623,
+    "latitude": 30.649047,
+    "level": 3
+  },
+  {
+    "name": "仙桃",
+    "longitude": 113.387448,
+    "latitude": 30.293966,
+    "level": 3
+  },
+  {
+    "name": "咸宁",
+    "longitude": 114.300061,
+    "latitude": 29.880657,
+    "level": 3
+  },
+  {
+    "name": "襄阳",
+    "longitude": 112.176326,
+    "latitude": 32.094934,
+    "level": 3
+  },
+  {
+    "name": "孝感",
+    "longitude": 113.935734,
+    "latitude": 30.927955,
+    "level": 3
+  },
+  {
+    "name": "宜昌",
+    "longitude": 111.310981,
+    "latitude": 30.732758,
+    "level": 3
+  },
+  {
+    "name": "湖南",
+    "longitude": 111.720664,
+    "latitude": 27.695864,
+    "level": 2
+  },
+  {
+    "name": "长沙",
+    "longitude": 112.979353,
+    "latitude": 28.213478,
+    "level": 3
+  },
+  {
+    "name": "常德",
+    "longitude": 111.653718,
+    "latitude": 29.012149,
+    "level": 3
+  },
+  {
+    "name": "郴州",
+    "longitude": 113.037704,
+    "latitude": 25.782264,
+    "level": 3
+  },
+  {
+    "name": "衡阳",
+    "longitude": 112.583819,
+    "latitude": 26.898164,
+    "level": 3
+  },
+  {
+    "name": "怀化",
+    "longitude": 109.986959,
+    "latitude": 27.557483,
+    "level": 3
+  },
+  {
+    "name": "娄底",
+    "longitude": 111.996396,
+    "latitude": 27.741073,
+    "level": 3
+  },
+  {
+    "name": "邵阳",
+    "longitude": 111.461525,
+    "latitude": 27.236811,
+    "level": 3
+  },
+  {
+    "name": "湘潭",
+    "longitude": 112.935556,
+    "latitude": 27.835095,
+    "level": 3
+  },
+  {
+    "name": "湘西州",
+    "longitude": 109.745746,
+    "latitude": 28.317951,
+    "level": 3
+  },
+  {
+    "name": "益阳",
+    "longitude": 112.366547,
+    "latitude": 28.588088,
+    "level": 3
+  },
+  {
+    "name": "永州",
+    "longitude": 111.614648,
+    "latitude": 26.435972,
+    "level": 3
+  },
+  {
+    "name": "岳阳",
+    "longitude": 113.146196,
+    "latitude": 29.378007,
+    "level": 3
+  },
+  {
+    "name": "张家界",
+    "longitude": 110.48162,
+    "latitude": 29.124889,
+    "level": 3
+  },
+  {
+    "name": "株洲",
+    "longitude": 113.131695,
+    "latitude": 27.827433,
+    "level": 3
+  },
+  {
+    "name": "江苏",
+    "longitude": 119.368489,
+    "latitude": 33.013797,
+    "level": 2
+  },
+  {
+    "name": "南京",
+    "longitude": 118.778074,
+    "latitude": 32.057236,
+    "level": 3
+  },
+  {
+    "name": "常州",
+    "longitude": 119.981861,
+    "latitude": 31.771397,
+    "level": 3
+  },
+  {
+    "name": "淮安",
+    "longitude": 119.030186,
+    "latitude": 33.606513,
+    "level": 3
+  },
+  {
+    "name": "连云港",
+    "longitude": 119.173872,
+    "latitude": 34.601549,
+    "level": 3
+  },
+  {
+    "name": "南通",
+    "longitude": 120.873801,
+    "latitude": 32.014665,
+    "level": 3
+  },
+  {
+    "name": "苏州",
+    "longitude": 120.619907,
+    "latitude": 31.317987,
+    "level": 3
+  },
+  {
+    "name": "宿迁",
+    "longitude": 118.296893,
+    "latitude": 33.95205,
+    "level": 3
+  },
+  {
+    "name": "泰州",
+    "longitude": 119.919606,
+    "latitude": 32.476053,
+    "level": 3
+  },
+  {
+    "name": "无锡",
+    "longitude": 120.305456,
+    "latitude": 31.570037,
+    "level": 3
+  },
+  {
+    "name": "徐州",
+    "longitude": 117.188107,
+    "latitude": 34.271553,
+    "level": 3
+  },
+  {
+    "name": "盐城",
+    "longitude": 120.148872,
+    "latitude": 33.379862,
+    "level": 3
+  },
+  {
+    "name": "扬州",
+    "longitude": 119.427778,
+    "latitude": 32.408505,
+    "level": 3
+  },
+  {
+    "name": "镇江",
+    "longitude": 119.455835,
+    "latitude": 32.204409,
+    "level": 3
+  },
+  {
+    "name": "江西",
+    "longitude": 115.676082,
+    "latitude": 27.757258,
+    "level": 2
+  },
+  {
+    "name": "南昌",
+    "longitude": 115.893528,
+    "latitude": 28.689578,
+    "level": 3
+  },
+  {
+    "name": "抚州",
+    "longitude": 116.360919,
+    "latitude": 27.954545,
+    "level": 3
+  },
+  {
+    "name": "赣州",
+    "longitude": 114.935909,
+    "latitude": 25.845296,
+    "level": 3
+  },
+  {
+    "name": "吉安",
+    "longitude": 114.992039,
+    "latitude": 27.113848,
+    "level": 3
+  },
+  {
+    "name": "景德镇",
+    "longitude": 117.186523,
+    "latitude": 29.303563,
+    "level": 3
+  },
+  {
+    "name": "九江",
+    "longitude": 115.999848,
+    "latitude": 29.71964,
+    "level": 3
+  },
+  {
+    "name": "萍乡",
+    "longitude": 113.859917,
+    "latitude": 27.639544,
+    "level": 3
+  },
+  {
+    "name": "上饶",
+    "longitude": 117.955464,
+    "latitude": 28.457623,
+    "level": 3
+  },
+  {
+    "name": "新余",
+    "longitude": 114.947117,
+    "latitude": 27.822322,
+    "level": 3
+  },
+  {
+    "name": "宜春",
+    "longitude": 114.400039,
+    "latitude": 27.81113,
+    "level": 3
+  },
+  {
+    "name": "鹰潭",
+    "longitude": 117.03545,
+    "latitude": 28.24131,
+    "level": 3
+  },
+  {
+    "name": "吉林",
+    "longitude": 126.262876,
+    "latitude": 43.678846,
+    "level": 2
+  },
+  {
+    "name": "长春",
+    "longitude": 125.313642,
+    "latitude": 43.898338,
+    "level": 3
+  },
+  {
+    "name": "白城",
+    "longitude": 122.840777,
+    "latitude": 45.621086,
+    "level": 3
+  },
+  {
+    "name": "白山",
+    "longitude": 126.435798,
+    "latitude": 41.945859,
+    "level": 3
+  },
+  {
+    "name": "吉林市",
+    "longitude": 126.564544,
+    "latitude": 43.871988,
+    "level": 3
+  },
+  {
+    "name": "辽源",
+    "longitude": 125.133686,
+    "latitude": 42.923303,
+    "level": 3
+  },
+  {
+    "name": "四平",
+    "longitude": 124.391382,
+    "latitude": 43.175525,
+    "level": 3
+  },
+  {
+    "name": "松原",
+    "longitude": 124.832995,
+    "latitude": 45.136049,
+    "level": 3
+  },
+  {
+    "name": "通化",
+    "longitude": 125.94265,
+    "latitude": 41.736397,
+    "level": 3
+  },
+  {
+    "name": "延边",
+    "longitude": 129.485902,
+    "latitude": 42.896414,
+    "level": 3
+  },
+  {
+    "name": "辽宁",
+    "longitude": 122.753592,
+    "latitude": 41.6216,
+    "level": 2
+  },
+  {
+    "name": "沈阳",
+    "longitude": 123.432791,
+    "latitude": 41.808645,
+    "level": 3
+  },
+  {
+    "name": "鞍山",
+    "longitude": 123.007763,
+    "latitude": 41.118744,
+    "level": 3
+  },
+  {
+    "name": "本溪",
+    "longitude": 123.778062,
+    "latitude": 41.325838,
+    "level": 3
+  },
+  {
+    "name": "朝阳",
+    "longitude": 120.446163,
+    "latitude": 41.571828,
+    "level": 3
+  },
+  {
+    "name": "大连",
+    "longitude": 121.593478,
+    "latitude": 38.94871,
+    "level": 3
+  },
+  {
+    "name": "丹东",
+    "longitude": 124.338543,
+    "latitude": 40.129023,
+    "level": 3
+  },
+  {
+    "name": "抚顺",
+    "longitude": 123.92982,
+    "latitude": 41.877304,
+    "level": 3
+  },
+  {
+    "name": "阜新",
+    "longitude": 121.660822,
+    "latitude": 42.01925,
+    "level": 3
+  },
+  {
+    "name": "葫芦岛",
+    "longitude": 120.860758,
+    "latitude": 40.74303,
+    "level": 3
+  },
+  {
+    "name": "锦州",
+    "longitude": 121.147749,
+    "latitude": 41.130879,
+    "level": 3
+  },
+  {
+    "name": "辽阳",
+    "longitude": 123.172451,
+    "latitude": 41.273339,
+    "level": 3
+  },
+  {
+    "name": "盘锦",
+    "longitude": 122.073228,
+    "latitude": 41.141248,
+    "level": 3
+  },
+  {
+    "name": "铁岭",
+    "longitude": 123.85485,
+    "latitude": 42.299757,
+    "level": 3
+  },
+  {
+    "name": "营口",
+    "longitude": 122.233391,
+    "latitude": 40.668651,
+    "level": 3
+  },
+  {
+    "name": "内蒙古",
+    "longitude": 114.415868,
+    "latitude": 43.468238,
+    "level": 2
+  },
+  {
+    "name": "呼和浩特",
+    "longitude": 111.660351,
+    "latitude": 40.828319,
+    "level": 3
+  },
+  {
+    "name": "阿拉善盟",
+    "longitude": 105.695683,
+    "latitude": 38.843075,
+    "level": 3
+  },
+  {
+    "name": "包头",
+    "longitude": 109.846239,
+    "latitude": 40.647119,
+    "level": 3
+  },
+  {
+    "name": "巴彦淖尔",
+    "longitude": 107.423807,
+    "latitude": 40.76918,
+    "level": 3
+  },
+  {
+    "name": "赤峰",
+    "longitude": 118.930761,
+    "latitude": 42.297112,
+    "level": 3
+  },
+  {
+    "name": "鄂尔多斯",
+    "longitude": 109.993706,
+    "latitude": 39.81649,
+    "level": 3
+  },
+  {
+    "name": "呼伦贝尔",
+    "longitude": 119.760822,
+    "latitude": 49.201636,
+    "level": 3
+  },
+  {
+    "name": "通辽",
+    "longitude": 122.260363,
+    "latitude": 43.633756,
+    "level": 3
+  },
+  {
+    "name": "乌海",
+    "longitude": 106.831999,
+    "latitude": 39.683177,
+    "level": 3
+  },
+  {
+    "name": "乌兰察布",
+    "longitude": 113.112846,
+    "latitude": 41.022363,
+    "level": 3
+  },
+  {
+    "name": "锡林郭勒盟",
+    "longitude": 116.02734,
+    "latitude": 43.939705,
+    "level": 3
+  },
+  {
+    "name": "兴安盟",
+    "longitude": 122.048167,
+    "latitude": 46.083757,
+    "level": 3
+  },
+  {
+    "name": "宁夏",
+    "longitude": 106.155481,
+    "latitude": 37.321323,
+    "level": 2
+  },
+  {
+    "name": "银川",
+    "longitude": 106.206479,
+    "latitude": 38.502621,
+    "level": 3
+  },
+  {
+    "name": "固原",
+    "longitude": 106.285268,
+    "latitude": 36.021523,
+    "level": 3
+  },
+  {
+    "name": "石嘴山",
+    "longitude": 106.379337,
+    "latitude": 39.020223,
+    "level": 3
+  },
+  {
+    "name": "吴忠",
+    "longitude": 106.208254,
+    "latitude": 37.993561,
+    "level": 3
+  },
+  {
+    "name": "中卫",
+    "longitude": 105.196754,
+    "latitude": 37.521124,
+    "level": 3
+  },
+  {
+    "name": "青海",
+    "longitude": 96.202544,
+    "latitude": 35.499761,
+    "level": 2
+  },
+  {
+    "name": "西宁",
+    "longitude": 101.767921,
+    "latitude": 36.640739,
+    "level": 3
+  },
+  {
+    "name": "果洛州",
+    "longitude": 100.223723,
+    "latitude": 34.480485,
+    "level": 3
+  },
+  {
+    "name": "海东地区",
+    "longitude": 102.085207,
+    "latitude": 36.51761,
+    "level": 3
+  },
+  {
+    "name": "海北州",
+    "longitude": 100.879802,
+    "latitude": 36.960654,
+    "level": 3
+  },
+  {
+    "name": "海南州",
+    "longitude": 100.624066,
+    "latitude": 36.284364,
+    "level": 3
+  },
+  {
+    "name": "海西州",
+    "longitude": 97.342625,
+    "latitude": 37.373799,
+    "level": 3
+  },
+  {
+    "name": "黄南州",
+    "longitude": 102.0076,
+    "latitude": 35.522852,
+    "level": 3
+  },
+  {
+    "name": "玉树州",
+    "longitude": 97.013316,
+    "latitude": 33.00624,
+    "level": 3
+  },
+  {
+    "name": "山东",
+    "longitude": 118.527663,
+    "latitude": 36.09929,
+    "level": 2
+  },
+  {
+    "name": "济南",
+    "longitude": 117.024967,
+    "latitude": 36.682785,
+    "level": 3
+  },
+  {
+    "name": "滨州",
+    "longitude": 117.968292,
+    "latitude": 37.405314,
+    "level": 3
+  },
+  {
+    "name": "东营",
+    "longitude": 118.583926,
+    "latitude": 37.487121,
+    "level": 3
+  },
+  {
+    "name": "德州",
+    "longitude": 116.328161,
+    "latitude": 37.460826,
+    "level": 3
+  },
+  {
+    "name": "菏泽",
+    "longitude": 115.46336,
+    "latitude": 35.26244,
+    "level": 3
+  },
+  {
+    "name": "济宁",
+    "longitude": 116.600798,
+    "latitude": 35.402122,
+    "level": 3
+  },
+  {
+    "name": "莱芜",
+    "longitude": 117.684667,
+    "latitude": 36.233654,
+    "level": 3
+  },
+  {
+    "name": "聊城",
+    "longitude": 115.986869,
+    "latitude": 36.455829,
+    "level": 3
+  },
+  {
+    "name": "临沂",
+    "longitude": 118.340768,
+    "latitude": 35.072409,
+    "level": 3
+  },
+  {
+    "name": "青岛",
+    "longitude": 120.384428,
+    "latitude": 36.105215,
+    "level": 3
+  },
+  {
+    "name": "日照",
+    "longitude": 119.50718,
+    "latitude": 35.420225,
+    "level": 3
+  },
+  {
+    "name": "泰安",
+    "longitude": 117.089415,
+    "latitude": 36.188078,
+    "level": 3
+  },
+  {
+    "name": "威海",
+    "longitude": 122.093958,
+    "latitude": 37.528787,
+    "level": 3
+  },
+  {
+    "name": "潍坊",
+    "longitude": 119.142634,
+    "latitude": 36.716115,
+    "level": 3
+  },
+  {
+    "name": "烟台",
+    "longitude": 121.309555,
+    "latitude": 37.536562,
+    "level": 3
+  },
+  {
+    "name": "枣庄",
+    "longitude": 117.279305,
+    "latitude": 34.807883,
+    "level": 3
+  },
+  {
+    "name": "淄博",
+    "longitude": 118.059134,
+    "latitude": 36.804685,
+    "level": 3
+  },
+  {
+    "name": "山西",
+    "longitude": 112.515496,
+    "latitude": 37.866566,
+    "level": 2
+  },
+  {
+    "name": "太原",
+    "longitude": 112.550864,
+    "latitude": 37.890277,
+    "level": 3
+  },
+  {
+    "name": "长治",
+    "longitude": 113.120292,
+    "latitude": 36.201664,
+    "level": 3
+  },
+  {
+    "name": "大同",
+    "longitude": 113.290509,
+    "latitude": 40.113744,
+    "level": 3
+  },
+  {
+    "name": "晋城",
+    "longitude": 112.867333,
+    "latitude": 35.499834,
+    "level": 3
+  },
+  {
+    "name": "晋中",
+    "longitude": 112.738514,
+    "latitude": 37.693362,
+    "level": 3
+  },
+  {
+    "name": "临汾",
+    "longitude": 111.538788,
+    "latitude": 36.099745,
+    "level": 3
+  },
+  {
+    "name": "吕梁",
+    "longitude": 111.143157,
+    "latitude": 37.527316,
+    "level": 3
+  },
+  {
+    "name": "朔州",
+    "longitude": 112.479928,
+    "latitude": 39.337672,
+    "level": 3
+  },
+  {
+    "name": "忻州",
+    "longitude": 112.727939,
+    "latitude": 38.461031,
+    "level": 3
+  },
+  {
+    "name": "阳泉",
+    "longitude": 113.569238,
+    "latitude": 37.869529,
+    "level": 3
+  },
+  {
+    "name": "运城",
+    "longitude": 111.006854,
+    "latitude": 35.038859,
+    "level": 3
+  },
+  {
+    "name": "陕西",
+    "longitude": 109.503789,
+    "latitude": 35.860026,
+    "level": 2
+  },
+  {
+    "name": "西安",
+    "longitude": 108.953098,
+    "latitude": 34.2778,
+    "level": 3
+  },
+  {
+    "name": "安康",
+    "longitude": 109.038045,
+    "latitude": 32.70437,
+    "level": 3
+  },
+  {
+    "name": "宝鸡",
+    "longitude": 107.170645,
+    "latitude": 34.364081,
+    "level": 3
+  },
+  {
+    "name": "汉中",
+    "longitude": 107.045478,
+    "latitude": 33.081569,
+    "level": 3
+  },
+  {
+    "name": "商洛",
+    "longitude": 109.934208,
+    "latitude": 33.873907,
+    "level": 3
+  },
+  {
+    "name": "铜川",
+    "longitude": 108.968067,
+    "latitude": 34.908368,
+    "level": 3
+  },
+  {
+    "name": "渭南",
+    "longitude": 109.483933,
+    "latitude": 34.502358,
+    "level": 3
+  },
+  {
+    "name": "咸阳",
+    "longitude": 108.707509,
+    "latitude": 34.345373,
+    "level": 3
+  },
+  {
+    "name": "延安",
+    "longitude": 109.50051,
+    "latitude": 36.60332,
+    "level": 3
+  },
+  {
+    "name": "榆林",
+    "longitude": 109.745926,
+    "latitude": 38.279439,
+    "level": 3
+  },
+  {
+    "name": "四川",
+    "longitude": 102.89916,
+    "latitude": 30.367481,
+    "level": 2
+  },
+  {
+    "name": "成都",
+    "longitude": 104.067923,
+    "latitude": 30.679943,
+    "level": 3
+  },
+  {
+    "name": "阿坝州",
+    "longitude": 102.228565,
+    "latitude": 31.905763,
+    "level": 3
+  },
+  {
+    "name": "巴中",
+    "longitude": 106.757916,
+    "latitude": 31.869189,
+    "level": 3
+  },
+  {
+    "name": "达州",
+    "longitude": 107.494973,
+    "latitude": 31.214199,
+    "level": 3
+  },
+  {
+    "name": "德阳",
+    "longitude": 104.402398,
+    "latitude": 31.13114,
+    "level": 3
+  },
+  {
+    "name": "甘孜州",
+    "longitude": 101.969232,
+    "latitude": 30.055144,
+    "level": 3
+  },
+  {
+    "name": "广安",
+    "longitude": 106.63572,
+    "latitude": 30.463984,
+    "level": 3
+  },
+  {
+    "name": "广元",
+    "longitude": 105.819687,
+    "latitude": 32.44104,
+    "level": 3
+  },
+  {
+    "name": "乐山",
+    "longitude": 103.760824,
+    "latitude": 29.600958,
+    "level": 3
+  },
+  {
+    "name": "凉山州",
+    "longitude": 102.259591,
+    "latitude": 27.892393,
+    "level": 3
+  },
+  {
+    "name": "泸州",
+    "longitude": 105.44397,
+    "latitude": 28.89593,
+    "level": 3
+  },
+  {
+    "name": "南充",
+    "longitude": 106.105554,
+    "latitude": 30.800965,
+    "level": 3
+  },
+  {
+    "name": "眉山",
+    "longitude": 103.84143,
+    "latitude": 30.061115,
+    "level": 3
+  },
+  {
+    "name": "绵阳",
+    "longitude": 104.705519,
+    "latitude": 31.504701,
+    "level": 3
+  },
+  {
+    "name": "内江",
+    "longitude": 105.073056,
+    "latitude": 29.599462,
+    "level": 3
+  },
+  {
+    "name": "攀枝花",
+    "longitude": 101.722423,
+    "latitude": 26.587571,
+    "level": 3
+  },
+  {
+    "name": "遂宁",
+    "longitude": 105.564888,
+    "latitude": 30.557491,
+    "level": 3
+  },
+  {
+    "name": "雅安",
+    "longitude": 103.009356,
+    "latitude": 29.999716,
+    "level": 3
+  },
+  {
+    "name": "宜宾",
+    "longitude": 104.633019,
+    "latitude": 28.769675,
+    "level": 3
+  },
+  {
+    "name": "资阳",
+    "longitude": 104.63593,
+    "latitude": 30.132191,
+    "level": 3
+  },
+  {
+    "name": "自贡",
+    "longitude": 104.776071,
+    "latitude": 29.359157,
+    "level": 3
+  },
+  {
+    "name": "西藏",
+    "longitude": 89.137982,
+    "latitude": 31.367315,
+    "level": 2
+  },
+  {
+    "name": "拉萨",
+    "longitude": 91.111891,
+    "latitude": 29.662557,
+    "level": 3
+  },
+  {
+    "name": "阿里地区",
+    "longitude": 81.107669,
+    "latitude": 30.404557,
+    "level": 3
+  },
+  {
+    "name": "昌都地区",
+    "longitude": 97.185582,
+    "latitude": 31.140576,
+    "level": 3
+  },
+  {
+    "name": "林芝地区",
+    "longitude": 94.349985,
+    "latitude": 29.666941,
+    "level": 3
+  },
+  {
+    "name": "那曲地区",
+    "longitude": 92.067018,
+    "latitude": 31.48068,
+    "level": 3
+  },
+  {
+    "name": "日喀则地区",
+    "longitude": 88.891486,
+    "latitude": 29.269023,
+    "level": 3
+  },
+  {
+    "name": "山南地区",
+    "longitude": 91.750644,
+    "latitude": 29.229027,
+    "level": 3
+  },
+  {
+    "name": "新疆",
+    "longitude": 85.614899,
+    "latitude": 42.127001,
+    "level": 2
+  },
+  {
+    "name": "乌鲁木齐",
+    "longitude": 87.564988,
+    "latitude": 43.84038,
+    "level": 3
+  },
+  {
+    "name": "阿拉尔",
+    "longitude": 81.291737,
+    "latitude": 40.61568,
+    "level": 3
+  },
+  {
+    "name": "阿克苏地区",
+    "longitude": 80.269846,
+    "latitude": 41.171731,
+    "level": 3
+  },
+  {
+    "name": "阿勒泰地区",
+    "longitude": 88.137915,
+    "latitude": 47.839744,
+    "level": 3
+  },
+  {
+    "name": "巴音郭楞",
+    "longitude": 86.121688,
+    "latitude": 41.771362,
+    "level": 3
+  },
+  {
+    "name": "博尔塔拉州",
+    "longitude": 82.052436,
+    "latitude": 44.913651,
+    "level": 3
+  },
+  {
+    "name": "昌吉州",
+    "longitude": 87.296038,
+    "latitude": 44.007058,
+    "level": 3
+  },
+  {
+    "name": "哈密地区",
+    "longitude": 93.528355,
+    "latitude": 42.858596,
+    "level": 3
+  },
+  {
+    "name": "和田地区",
+    "longitude": 79.930239,
+    "latitude": 37.116774,
+    "level": 3
+  },
+  {
+    "name": "喀什地区",
+    "longitude": 75.992973,
+    "latitude": 39.470627,
+    "level": 3
+  },
+  {
+    "name": "克拉玛依",
+    "longitude": 84.88118,
+    "latitude": 45.594331,
+    "level": 3
+  },
+  {
+    "name": "克孜勒苏州",
+    "longitude": 76.137564,
+    "latitude": 39.750346,
+    "level": 3
+  },
+  {
+    "name": "石河子",
+    "longitude": 86.041865,
+    "latitude": 44.308259,
+    "level": 3
+  },
+  {
+    "name": "塔城地区",
+    "longitude": 82.974881,
+    "latitude": 46.758684,
+    "level": 3
+  },
+  {
+    "name": "图木舒克",
+    "longitude": 79.198155,
+    "latitude": 39.889223,
+    "level": 3
+  },
+  {
+    "name": "吐鲁番地区",
+    "longitude": 89.181595,
+    "latitude": 42.96047,
+    "level": 3
+  },
+  {
+    "name": "五家渠",
+    "longitude": 87.565449,
+    "latitude": 44.368899,
+    "level": 3
+  },
+  {
+    "name": "伊犁州",
+    "longitude": 81.297854,
+    "latitude": 43.922248,
+    "level": 3
+  },
+  {
+    "name": "云南",
+    "longitude": 101.592952,
+    "latitude": 24.864213,
+    "level": 2
+  },
+  {
+    "name": "昆明",
+    "longitude": 102.714601,
+    "latitude": 25.049153,
+    "level": 3
+  },
+  {
+    "name": "保山",
+    "longitude": 99.177996,
+    "latitude": 25.120489,
+    "level": 3
+  },
+  {
+    "name": "楚雄州",
+    "longitude": 101.529382,
+    "latitude": 25.066356,
+    "level": 3
+  },
+  {
+    "name": "大理州",
+    "longitude": 100.223675,
+    "latitude": 25.5969,
+    "level": 3
+  },
+  {
+    "name": "德宏州",
+    "longitude": 98.589434,
+    "latitude": 24.44124,
+    "level": 3
+  },
+  {
+    "name": "迪庆州",
+    "longitude": 99.713682,
+    "latitude": 27.831029,
+    "level": 3
+  },
+  {
+    "name": "红河州",
+    "longitude": 103.384065,
+    "latitude": 23.367718,
+    "level": 3
+  },
+  {
+    "name": "丽江",
+    "longitude": 100.229628,
+    "latitude": 26.875351,
+    "level": 3
+  },
+  {
+    "name": "临沧",
+    "longitude": 100.092613,
+    "latitude": 23.887806,
+    "level": 3
+  },
+  {
+    "name": "怒江州",
+    "longitude": 98.859932,
+    "latitude": 25.860677,
+    "level": 3
+  },
+  {
+    "name": "普洱",
+    "longitude": 100.980058,
+    "latitude": 22.788778,
+    "level": 3
+  },
+  {
+    "name": "曲靖",
+    "longitude": 103.782539,
+    "latitude": 25.520758,
+    "level": 3
+  },
+  {
+    "name": "昭通",
+    "longitude": 103.725021,
+    "latitude": 27.340633,
+    "level": 3
+  },
+  {
+    "name": "文山",
+    "longitude": 104.089112,
+    "latitude": 23.401781,
+    "level": 3
+  },
+  {
+    "name": "西双版纳",
+    "longitude": 100.803038,
+    "latitude": 22.009433,
+    "level": 3
+  },
+  {
+    "name": "玉溪",
+    "longitude": 102.545068,
+    "latitude": 24.370447,
+    "level": 3
+  },
+  {
+    "name": "浙江",
+    "longitude": 119.957202,
+    "latitude": 29.159494,
+    "level": 2
+  },
+  {
+    "name": "杭州",
+    "longitude": 120.219375,
+    "latitude": 30.259244,
+    "level": 3
+  },
+  {
+    "name": "湖州",
+    "longitude": 120.137243,
+    "latitude": 30.877925,
+    "level": 3
+  },
+  {
+    "name": "嘉兴",
+    "longitude": 120.760428,
+    "latitude": 30.773992,
+    "level": 3
+  },
+  {
+    "name": "金华",
+    "longitude": 119.652576,
+    "latitude": 29.102899,
+    "level": 3
+  },
+  {
+    "name": "丽水",
+    "longitude": 119.929576,
+    "latitude": 28.4563,
+    "level": 3
+  },
+  {
+    "name": "宁波",
+    "longitude": 121.579006,
+    "latitude": 29.885259,
+    "level": 3
+  },
+  {
+    "name": "衢州",
+    "longitude": 118.875842,
+    "latitude": 28.95691,
+    "level": 3
+  },
+  {
+    "name": "绍兴",
+    "longitude": 120.592467,
+    "latitude": 30.002365,
+    "level": 3
+  },
+  {
+    "name": "台州",
+    "longitude": 121.440613,
+    "latitude": 28.668283,
+    "level": 3
+  },
+  {
+    "name": "温州",
+    "longitude": 120.690635,
+    "latitude": 28.002838,
+    "level": 3
+  },
+  {
+    "name": "舟山",
+    "longitude": 122.169872,
+    "latitude": 30.03601,
+    "level": 3
+  }
+]
