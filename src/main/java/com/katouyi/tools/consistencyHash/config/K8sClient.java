@@ -176,12 +176,13 @@ public class K8sClient implements RegistryClient {
                 @Override
                 public void onClose(WatcherException e) {
                     logger.error("k8s registry client is close! we will Re-register the listener", e);
-                    Watch watch = serviceWatchMap.get(nameServiceName);
-                    if (Objects.nonNull(watch)) {
-                        watch.close();
-                    }
-                    serviceWatchMap.clear();
-                    loadServices(k8sServiceInfo, true);
+                    restart(nameServiceName, k8sServiceInfo);
+                }
+
+                @Override
+                public void onClose() {
+                    logger.error("k8s registry client is close! we will Re-register the listener");
+                    restart(nameServiceName, k8sServiceInfo);
                 }
             }));
         } else {
@@ -189,6 +190,18 @@ public class K8sClient implements RegistryClient {
         }
         //更新服务列表缓存
         modifyServiceInstance(nameServiceName, k8sServiceInfo.getServiceName(), resource.get());
+    }
+
+    /**
+     * 意外退出重启
+     */
+    private void restart(String nameServiceName, K8sServiceInfo k8sServiceInfo) {
+        Watch watch = serviceWatchMap.get(nameServiceName);
+        if (Objects.nonNull(watch)) {
+            watch.close();
+        }
+        serviceWatchMap.clear();
+        loadServices(k8sServiceInfo, true);
     }
 
     /**
