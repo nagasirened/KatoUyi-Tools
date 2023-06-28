@@ -1,0 +1,114 @@
+public static void main(String[] args) {
+    List<String> regions = Arrays.asList("03", "16", "29");
+    for (String region : regions) {
+        GoogleShoppingContentService service = new GoogleShoppingContentService();
+        String token = service.getToken("/merchant-center-test.json");
+        service.testDichotomyRepairGmcRegion( token, "/Users/zengguangfu/regions/" + region + "goods.txt", "/Users/zengguangfu/regions/"+ region +"suspend.txt", region );
+    }
+}
+
+public void testDichotomyRepairGmcRegion(String token, String goodAddress, String suspectAddress, String regionId) {
+    String merchantId = "769033301";
+    RegionSalesOrgRelect org = RegionSalesOrgRelect.builder().salesOrgId("9" + regionId).title("test1").build();
+    JSONObject region = packRegionData(org, Collections.singletonList(new PostCode("1000")), merchantId);
+    String regionUrl = GOOGLE_API_BASE_URL + merchantId + "/regions/0009" + regionId;
+    ThirdResult<Object> result = HttpUtil.doGooglePost(GOOGLE_API_BASE_URL + merchantId + "/regions?regionId=" + region.get("regionId"), token, region.toString(), JSONObject.class);
+    System.out.println(result);
+    if (result.getResultStatus().equals("200")) {
+        try {
+            TimeUnit.SECONDS.sleep(120);
+        } catch (Exception ignore) {
+        }
+    }
+    List<PostCode> baseList = parseTxtToPostCode(goodAddress);
+    List<PostCode> suspectList = parseTxtToPostCode(suspectAddress);
+    List<Integer> sizeList = Arrays.asList(100, 50, 10, 1);
+    for (int j = 0; j < sizeList.size(); j++) {
+        int size = Convert.toInt(sizeList.get(j));
+        List<List<PostCode>> partitions = new ArrayList<>(Lists.partition(suspectList, size));
+        List<PostCode> cherryPick = new LinkedList<>();
+        for (int i = 0; i < partitions.size(); i++) {
+            try {
+                List<PostCode> postCodes = partitions.get(i);
+                List<PostCode> data = new ArrayList<>(baseList);
+                data.addAll(postCodes);
+                JSONObject regionData = packRegionData(org, data, merchantId);
+                ThirdResult<JSONObject> patchResult = HttpUtil.doGooglePatch(regionUrl, token, regionData.toString(), JSONObject.class);
+                if (patchResult.getResultStatus().startsWith("40")) {
+                    log.error("错了{}", patchResult.getResultStatus());
+                }
+                if (patchResult.getData().getBoolean("regionalInventoryEligible")) {
+                    cherryPick.addAll( postCodes );
+                    partitions.set(i, new ArrayList<>(0));
+                }
+                TimeUnit.SECONDS.sleep(5);
+            } catch (Exception e) {
+                log.error("???? 报错了一个 ????", e);
+            }
+        }
+        if (CollUtil.isNotEmpty(cherryPick)) {
+            baseList.addAll(cherryPick);
+            cherryPick.clear();
+        }
+        suspectList = partitions.stream().flatMap(Collection::stream).collect(Collectors.toList());
+    }
+    System.out.println("baseList 完成，导出到文件里面: " + JSON.toJSONString(baseList));
+    long currentSeconds = DateUtil.currentSeconds();
+    try (FileWriter fw = new FileWriter(goodAddress, true);
+         BufferedWriter bw=new BufferedWriter(fw)) {
+        List<String> resList = baseList.stream().map(PostCode::toInfo).collect(Collectors.toList());
+        for (String line : resList) {
+            bw.write(line + "\n");
+        }
+    } catch (Exception e) {
+        log.info("test");
+    }
+}
+
+private List<PostCode> parseTxtToPostCode(String fileAddress) {
+    Path path = Paths.get(fileAddress);
+    try (Stream<String> lines = Files.lines(path)) {
+        return lines.map(this::parseLine).filter(Objects::nonNull).collect(Collectors.toList());
+    } catch (Exception e) {
+        log.error("fileParse fail, address: {}", fileAddress);
+        return new ArrayList<>();
+    }
+}
+
+private PostCode parseLine(String line) {
+    if (StrUtil.isBlank(line)) return null;
+    PostCode postCode = new PostCode();
+    String[] split = line.split("-");
+    postCode.setBegin(split[0]);
+    if (split.length > 1) {
+        postCode.setEnd(split[1]);
+    }
+    return postCode;
+}
+
+private JSONObject packRegionData(RegionSalesOrgRelect org, List<PostCode> convertGroup, String meId) {
+    JSONObject region = new JSONObject();
+    region.put("regionId", generatorRegionId(org.getSalesOrgId()));
+    region.put("merchantId", meId);
+    region.put("displayName", org.getTitle());
+    JSONObject postalCodeArea = new JSONObject();
+    JSONArray postalCodes = new JSONArray();
+    convertGroup.forEach(zipCode -> {
+        JSONObject postalCode = new JSONObject();
+        postalCode.put("begin", zipCode.getBegin());
+        if (zipCode.getEnd() != null) {
+            postalCode.put("end", zipCode.getEnd());
+        }
+        postalCodes.add(postalCode);
+    });
+    postalCodeArea.put("regionCode", "US");
+    postalCodeArea.put("postalCodes", postalCodes);
+    region.put("postalCodeArea", postalCodeArea);
+    return region;
+}
+
+private String generatorRegionId(String salesOrgId) {
+    int length = salesOrgId.length();
+    String prefix = Stream.generate(() -> "0").limit(6 - length).collect(Collectors.joining(""));
+    return prefix + salesOrgId;
+}
